@@ -1,16 +1,16 @@
-package com.example.myapplication.ui.tools;
+package com.example.myapplication.ui.recordsleep;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class ToolsViewModel extends ViewModel {
+public class RecordSleepViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public ToolsViewModel() {
+    public RecordSleepViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is tools fragment");
+        mText.setValue("This is recordsleep fragment");
     }
 
     public LiveData<String> getText() {

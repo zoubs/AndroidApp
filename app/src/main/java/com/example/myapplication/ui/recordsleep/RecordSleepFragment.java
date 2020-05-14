@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.tools;
+package com.example.myapplication.ui.recordsleep;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,17 +14,17 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.myapplication.R;
 
-public class ToolsFragment extends Fragment {
+public class RecordSleepFragment extends Fragment {
 
-    private ToolsViewModel toolsViewModel;
+    private RecordSleepViewModel recordSleepViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        toolsViewModel =
-                ViewModelProviders.of(this).get(ToolsViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_tools, container, false);
+        recordSleepViewModel =
+                ViewModelProviders.of(this).get(RecordSleepViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_record_sleep, container, false);
         final TextView textView = root.findViewById(R.id.text_tools);
-        toolsViewModel.getText().observe(this, new Observer<String>() {
+        recordSleepViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
