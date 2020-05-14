@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.send;
+package com.example.myapplication.ui.feedback;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,17 +14,17 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.myapplication.R;
 
-public class SendFragment extends Fragment {
+public class FeedbackFragment extends Fragment {
 
-    private SendViewModel sendViewModel;
+    private FeedbackViewModel feedbackViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        sendViewModel =
-                ViewModelProviders.of(this).get(SendViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_send, container, false);
+        feedbackViewModel =
+                ViewModelProviders.of(this).get(FeedbackViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_feedback, container, false);
         final TextView textView = root.findViewById(R.id.text_send);
-        sendViewModel.getText().observe(this, new Observer<String>() {
+        feedbackViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

@@ -20,7 +20,7 @@
     <fragment
         android:id="@+id/nav_gallery"
         android:name="com.example.myapplication.ui.find.FindFragment"
-        android:label="@string/menu_gallery"
+        android:label="@string/menu_find"
         tools:layout="@layout/fragment_find" />
 
     <fragment
@@ -43,7 +43,7 @@
 
     <fragment
         android:id="@+id/nav_send"
-        android:name="com.example.myapplication.ui.send.SendFragment"
-        android:label="@string/menu_send"
-        tools:layout="@layout/fragment_send" />
+        android:name="com.example.myapplication.ui.feedback.FeedbackFragment"
+        android:label="@string/menu_feedback"
+        tools:layout="@layout/fragment_feedback" />
 </navigation>

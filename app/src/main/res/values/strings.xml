@@ -12,10 +12,10 @@
     <string name="action_settings">Settings</string>
 
     <string name="menu_home">主页</string>
-    <string name="menu_gallery">食物查询</string>
+    <string name="menu_find">食物查询</string>
     <string name="menu_slideshow">记录饮食</string>
     <string name="menu_tools">记录睡眠</string>
     <string name="menu_share">个人信息</string>
-    <string name="menu_send">问题反馈</string>
+    <string name="menu_feedback">问题反馈</string>
     <string name="menu_recommend">食物推荐</string>
 </resources>
