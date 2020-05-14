@@ -21,16 +21,27 @@ public class MainActivity extends AppCompatActivity {
 
         //登录跳转按钮
         emailText = findViewById(R.id.emailText);
+        pwdText = findViewById(R.id.pwdText);
         mBtnLogin = findViewById(R.id.mBtnLogin);
         mBtnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //String email = emailText.getText().toString();
-                //String password = pwdText.getText().toString();
+                 String email = emailText.getText().toString();
+                 if(email.isEmpty()) {
+                     email = "example@goole.com";
+                 }
+                String password = pwdText.getText().toString();
+                 if(password.isEmpty()) {
+                     password = "123456";
+                 }
 
                 //判断账号密码
                 //简化
                 Intent intent = new Intent(MainActivity.this,HomePageActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("email",email);
+                bundle.putString("pwd",password);
+                intent.putExtras(bundle);
                 startActivity(intent);
                 //复杂
                 /*if(email.equals("admin") && password.equals("admin")) {
