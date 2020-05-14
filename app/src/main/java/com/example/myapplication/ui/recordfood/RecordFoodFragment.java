@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.slideshow;
+package com.example.myapplication.ui.recordfood;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,17 +14,17 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.myapplication.R;
 
-public class SlideshowFragment extends Fragment {
+public class RecordFoodFragment extends Fragment {
 
-    private SlideshowViewModel slideshowViewModel;
+    private RecordFoodViewModel recordFoodViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        slideshowViewModel =
-                ViewModelProviders.of(this).get(SlideshowViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_slideshow, container, false);
+        recordFoodViewModel =
+                ViewModelProviders.of(this).get(RecordFoodViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_record_food, container, false);
         final TextView textView = root.findViewById(R.id.text_slideshow);
-        slideshowViewModel.getText().observe(this, new Observer<String>() {
+        recordFoodViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

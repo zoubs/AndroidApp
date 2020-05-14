@@ -13,7 +13,7 @@
 
     <string name="menu_home">主页</string>
     <string name="menu_find">食物查询</string>
-    <string name="menu_slideshow">记录饮食</string>
+    <string name="menu_record_food">记录饮食</string>
     <string name="menu_tools">记录睡眠</string>
     <string name="menu_info">个人信息</string>
     <string name="menu_feedback">问题反馈</string>
