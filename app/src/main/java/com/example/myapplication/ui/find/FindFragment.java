@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.gallery;
+package com.example.myapplication.ui.find;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,17 +14,17 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.myapplication.R;
 
-public class GalleryFragment extends Fragment {
+public class FindFragment extends Fragment {
 
-    private GalleryViewModel galleryViewModel;
+    private FindViewModel findViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        galleryViewModel =
-                ViewModelProviders.of(this).get(GalleryViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_gallery, container, false);
+        findViewModel =
+                ViewModelProviders.of(this).get(FindViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_find, container, false);
         final TextView textView = root.findViewById(R.id.text_gallery);
-        galleryViewModel.getText().observe(this, new Observer<String>() {
+        findViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

@@ -10,7 +10,7 @@ public class RecommendViewModel extends ViewModel {
 
     public RecommendViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is gallery fragment");
+        mText.setValue("This is find fragment");
     }
 
     public LiveData<String> getText() {
