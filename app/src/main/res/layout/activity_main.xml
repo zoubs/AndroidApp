@@ -5,14 +5,61 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="25dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="健康管理系统"
+            android:textSize="40sp"
+            android:layout_gravity="center"
+            android:layout_marginTop="150dp"/>
+
+        <EditText
+            android:id="@+id/emailText"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="60dp"
+            android:hint="@string/loginEmail"
+            android:textSize="20sp"
+            android:ems="10"
+            android:inputType="textEmailAddress" />
+
+        <EditText
+            android:id="@+id/pwdText"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="10dp"
+            android:hint="@string/loginPwd"
+            android:textSize="20sp"
+            android:ems="10"
+            android:inputType="textPassword" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:autoLink="all"
+            android:text="@string/forget"
+            android:layout_marginTop="10dp"
+            android:textSize="20sp"/>
+
+        <Button
+            android:id="@+id/mBtnLogin"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:text="登录"
+            android:textSize="25sp"
+            android:textColor="#ffffff"
+            android:layout_marginTop="100dp"
+            android:layout_gravity="center"
+            android:background="@drawable/circle_button_login"/>
+
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
