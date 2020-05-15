@@ -21,7 +21,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class HomePageActivity extends AppCompatActivity {
@@ -39,12 +38,12 @@ public class HomePageActivity extends AppCompatActivity {
         //获取前页数据
         Bundle bundle = getIntent().getExtras();
         View headerView = navigationView.getHeaderView(0);
-        //LinearLayout linearLayout = (LinearLayout) navigationView.inflateHeaderView(R.layout.nav_header_home_page);
+
         TextView userName = headerView.findViewById(R.id.nav_user_name);
-        //TextView userName = linearLayout.findViewById(R.id.nav_user_name);
+
         Log.d("test",userName.getText().toString());
         userName.setText(bundle.getString("email"));
-
+        //获取和设置完成
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
