@@ -45,55 +45,17 @@ public class MainActivity extends AppCompatActivity {
         mBtnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                 String email = emailText.getText().toString();
-                 if(email.isEmpty()) {
-                     email = "example@goole.com";
-                 }
+                String email = emailText.getText().toString();
                 String password = pwdText.getText().toString();
-                 if(password.isEmpty()) {
-                     password = "123456";
-                 }
-
-                final String finalEmail = email;
-                new Thread(new Runnable() {
-                     @Override
-                     public void run() {
-                        try {
-                            Class.forName("com.mysql.jdbc.Driver");
-                            java.sql.Connection cn = DriverManager.getConnection(url,user,pswd);
-                            String sql = "select userPassword from users where userEmail =";
-                            sql += ("\"" + finalEmail +"\"");
-                            Statement st = (Statement)cn.createStatement();
-                            ResultSet rs = st.executeQuery(sql);
-
-                            while(rs.next())
-                            {
-                                flag = true;
-                                Log.d("password",rs.getString("userPassword"));
-                            }
-
-                            cn.close();
-                            st.close();
-                            rs.close();
-                            Log.d("success","链接成功");
-                        } catch (ClassNotFoundException e) {
-                            Log.d("error","链接失败");
-                            e.printStackTrace();
-                        } catch (SQLException e) {
-                            e.printStackTrace();
-                        }
-                     }
-                 }).start();
-
-                Log.d("flag",(flag?"true":"false"));
-
+                MyUsers myUsers = new MyUsers(url,user,pswd);
+                Log.d("user",email);
+                Log.d("pass",password);
                 //复杂
-                if(flag) {
+                if(myUsers.isMatchPassword(email,password)) {
                     //Toast.makeText(MainActivity.this, "登录成功！", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(MainActivity.this,HomePageActivity.class);
                     Bundle bundle = new Bundle();
                     bundle.putString("email",email);
-                    bundle.putString("pwd",password);
                     intent.putExtras(bundle);
                     ToastUtil.showMsg(getApplicationContext(),"登录成功！");
                     startActivity(intent);
