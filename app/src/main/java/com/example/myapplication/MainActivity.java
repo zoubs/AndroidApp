@@ -8,16 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
-
 import com.example.myapplication.util.ToastUtil;
-import com.mysql.jdbc.Connection;
-import com.mysql.jdbc.PreparedStatement;
-import com.mysql.jdbc.Statement;
-
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,10 +19,6 @@ public class MainActivity extends AppCompatActivity {
     private String url = "jdbc:mysql://192.168.3.6:3306/android_db";
     private String user = "android";
     private String pswd = "android";
-    private boolean flag = false;
-    PreparedStatement statement = null;
-    Statement stat = null;
-    Connection conn = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

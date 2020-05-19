@@ -8,14 +8,14 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class MyUsers {
+class MyUsers {
     private String url;             //MySql的URL
     private String user;            //MySql登录名
     private String pswd;            //MySql登录密码
     private String userPassword;    //获取的用户密码
 
     //构造函数初始化
-    public MyUsers(String url, String user, String pswd) {
+    MyUsers(String url, String user, String pswd) {
         this.url = url;
         this.user = user;
         this.pswd = pswd;
@@ -24,7 +24,7 @@ public class MyUsers {
     //获取用户密码
     //email     需要获取密码的用户名
     //return    密码/null
-    public String getPassword(String email) {
+    private String getPassword(String email) {
         MyThreadReturn myThreadReturn = new MyThreadReturn(email);
         Thread thread = new Thread(myThreadReturn);
         thread.start();
@@ -46,15 +46,12 @@ public class MyUsers {
     //userEmail     用户名
     //userPassword  用户密码
     //return        是/否匹配
-    public boolean isMatchPassword(String userEmail,String userPassword) {
+    boolean isMatchPassword(String userEmail, String userPassword) {
         if(this.userPassword!=null && !this.userPassword.isEmpty())
             Log.d("user",this.userPassword);
         if(!userPassword.isEmpty())
             Log.d("user",userPassword);
-        if(userPassword.equals(getPassword(userEmail)))
-            return true;
-        else
-            return false;
+        return userPassword.equals(getPassword(userEmail));
     }
 
     //私有类，处理Thread线程
@@ -64,7 +61,7 @@ public class MyUsers {
         private String returnPswd;
         //构造函数
         // 传参
-        public MyThreadReturn(String email) {
+        MyThreadReturn(String email) {
             this.tmpEmail = email;
         }
 
@@ -96,7 +93,7 @@ public class MyUsers {
             }
         }
 
-        public String getReturnPassword() {
+        String getReturnPassword() {
             if(returnPswd!=null && !returnPswd.isEmpty())
                 Log.d("run_return",returnPswd);
             return returnPswd;
