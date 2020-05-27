@@ -13,6 +13,7 @@ class MyUsers {
     private String user;            //MySql登录名
     private String pswd;            //MySql登录密码
     private String userPassword;    //获取的用户密码
+    private boolean is_admin;
 
     //构造函数初始化
     MyUsers(String url, String user, String pswd) {
@@ -35,6 +36,8 @@ class MyUsers {
         }
 
         userPassword = myThreadReturn.getReturnPassword();
+        is_admin = myThreadReturn.getIsAdmin();
+        System.out.println(is_admin);
 
         if(userPassword!=null && !userPassword.isEmpty())
             Log.d("return",userPassword);
@@ -46,7 +49,7 @@ class MyUsers {
     //userEmail     用户名
     //userPassword  用户密码
     //return        是/否匹配
-    boolean isMatchPassword(String userEmail, String userPassword) {
+    public boolean isMatchPassword(String userEmail, String userPassword) {
         if(this.userPassword!=null && !this.userPassword.isEmpty())
             Log.d("user",this.userPassword);
         if(!userPassword.isEmpty())
@@ -54,11 +57,16 @@ class MyUsers {
         return userPassword.equals(getPassword(userEmail));
     }
 
+    public boolean isAdmin() {
+        return is_admin;
+    }
+
     //私有类，处理Thread线程
     private class MyThreadReturn implements Runnable {
 
         private String tmpEmail;
         private String returnPswd;
+        private boolean is_admin;
         //构造函数
         // 传参
         MyThreadReturn(String email) {
@@ -71,7 +79,7 @@ class MyUsers {
                 //连接到mysql
                 Class.forName("com.mysql.jdbc.Driver");
                 java.sql.Connection cn = DriverManager.getConnection(url,user,pswd);
-                String sql = "select userPassword from users where userEmail =";
+                String sql = "select userPassword,is_admin from users where userEmail =";
                 sql += ("\"" + tmpEmail +"\"");
                 Statement st = (Statement)cn.createStatement();
                 ResultSet rs = st.executeQuery(sql);
@@ -79,7 +87,9 @@ class MyUsers {
                 //获取密码
                 while(rs.next()) {
                     returnPswd = rs.getString("userPassword");
+                    is_admin = rs.getBoolean("is_admin");
                     System.out.println(returnPswd);
+                    System.out.println(is_admin);
                 }
                 cn.close();
                 st.close();
@@ -93,10 +103,14 @@ class MyUsers {
             }
         }
 
-        String getReturnPassword() {
+        public String getReturnPassword() {
             if(returnPswd!=null && !returnPswd.isEmpty())
                 Log.d("run_return",returnPswd);
             return returnPswd;
+        }
+
+        public boolean getIsAdmin() {
+            return is_admin;
         }
     }
 }
