@@ -36,13 +36,17 @@ public class HomePageActivity extends AppCompatActivity {
         NavigationView navigationView = findViewById(R.id.nav_view);
 
         //获取前页数据
-        Bundle bundle = getIntent().getExtras();
+        Bundle preBundle = getIntent().getExtras();
         View headerView = navigationView.getHeaderView(0);
 
         TextView userName = headerView.findViewById(R.id.nav_user_name);
 
-        Log.d("test",userName.getText().toString());
-        userName.setText(bundle.getString("email"));
+        //Log.d("test",userName.getText().toString());
+        //设置任务栏用户名（暂用邮箱替代）
+        userName.setText(preBundle.getString("email"));
+
+
+
         //获取和设置完成
 
         Toolbar toolbar = findViewById(R.id.toolbar);

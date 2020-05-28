@@ -62,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
 
                     Bundle bundle = new Bundle();
                     bundle.putString("email",email);
+                    bundle.putBoolean("is_admin",myUsers.isAdmin());
 
                     System.out.println(myUsers.isAdmin());
                     Intent intent = new Intent();
