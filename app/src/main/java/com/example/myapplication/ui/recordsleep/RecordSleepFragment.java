@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.share;
+package com.example.myapplication.ui.recordsleep;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,17 +14,17 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.myapplication.R;
 
-public class ShareFragment extends Fragment {
+public class RecordSleepFragment extends Fragment {
 
-    private ShareViewModel shareViewModel;
+    private RecordSleepViewModel recordSleepViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        shareViewModel =
-                ViewModelProviders.of(this).get(ShareViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_share, container, false);
-        final TextView textView = root.findViewById(R.id.text_share);
-        shareViewModel.getText().observe(this, new Observer<String>() {
+        recordSleepViewModel =
+                ViewModelProviders.of(this).get(RecordSleepViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_record_sleep, container, false);
+        final TextView textView = root.findViewById(R.id.text_tools);
+        recordSleepViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

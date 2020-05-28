@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.send;
+package com.example.myapplication.ui.recordfood;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,17 +14,17 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.myapplication.R;
 
-public class SendFragment extends Fragment {
+public class RecordFoodFragment extends Fragment {
 
-    private SendViewModel sendViewModel;
+    private RecordFoodViewModel recordFoodViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        sendViewModel =
-                ViewModelProviders.of(this).get(SendViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_send, container, false);
-        final TextView textView = root.findViewById(R.id.text_send);
-        sendViewModel.getText().observe(this, new Observer<String>() {
+        recordFoodViewModel =
+                ViewModelProviders.of(this).get(RecordFoodViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_record_food, container, false);
+        final TextView textView = root.findViewById(R.id.text_slideshow);
+        recordFoodViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

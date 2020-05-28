@@ -1,16 +1,16 @@
-package com.example.myapplication.ui.tools;
+package com.example.myapplication.ui.recordfood;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class ToolsViewModel extends ViewModel {
+public class RecordFoodViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public ToolsViewModel() {
+    public RecordFoodViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is tools fragment");
+        mText.setValue("This is recordfood fragment");
     }
 
     public LiveData<String> getText() {

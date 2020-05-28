@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.tools;
+package com.example.myapplication.ui.feedback;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,17 +14,17 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.myapplication.R;
 
-public class ToolsFragment extends Fragment {
+public class FeedbackFragment extends Fragment {
 
-    private ToolsViewModel toolsViewModel;
+    private FeedbackViewModel feedbackViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        toolsViewModel =
-                ViewModelProviders.of(this).get(ToolsViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_tools, container, false);
-        final TextView textView = root.findViewById(R.id.text_tools);
-        toolsViewModel.getText().observe(this, new Observer<String>() {
+        feedbackViewModel =
+                ViewModelProviders.of(this).get(FeedbackViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_feedback, container, false);
+        final TextView textView = root.findViewById(R.id.text_send);
+        feedbackViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

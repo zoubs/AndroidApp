@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#87CEFA</color>
-    <color name="colorPressed">#87CEEB</color>
-    <color name="colorPrimaryDark">#111111</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorPrimary">     #87CEFA </color>
+    <color name="colorPressed">     #87CEEB </color>
+    <color name="colorPrimaryDark"> #111111 </color>
+    <color name="colorAccent">      #D81B60 </color>
+    <color name="LemonChiffon">     #FFFACD </color>
+    <color name="Lavender">         #E6E6FA </color>
+    <color name="Tomato">           #FF6347 </color>
+    <color name="MediumPurple">     #9370DB </color>
+    <color name="Azure4">           #838B8B </color>
+    <color name="DodgerBlue1">      #1E90FF </color>
+    <color name="Orange">           #FFA500 </color>
 </resources>
