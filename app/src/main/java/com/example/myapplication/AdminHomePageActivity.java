@@ -37,10 +37,10 @@ public class AdminHomePageActivity extends AppCompatActivity {
         bottomNavigationBar.setBackgroundStyle(BottomNavigationBar.BACKGROUND_STYLE_RIPPLE);
         //bottomNavigationBar.setBarBackgroundColor("#EEEEEE");
         bottomNavigationBar
-                .addItem(new BottomNavigationItem(R.drawable.ic_menu_slideshow, "首页").setActiveColorResource(R.color.DodgerBlue1))
-                .addItem(new BottomNavigationItem(R.drawable.ic_menu_gallery, "食物管理").setActiveColorResource(R.color.Tomato))
-                .addItem(new BottomNavigationItem(R.drawable.ic_menu_send, "用户管理").setActiveColorResource(R.color.Orange))
-                .addItem(new BottomNavigationItem(R.drawable.ic_menu_share, "问题反馈").setActiveColorResource(R.color.MediumPurple))
+                .addItem(new BottomNavigationItem(R.drawable.ic_home_black_24dp, "首页").setActiveColorResource(R.color.DodgerBlue1))
+                .addItem(new BottomNavigationItem(R.drawable.ic_restaurant_black_24dp, "食物管理").setActiveColorResource(R.color.Tomato))
+                .addItem(new BottomNavigationItem(R.drawable.ic_people_black_24dp, "用户管理").setActiveColorResource(R.color.Orange))
+                .addItem(new BottomNavigationItem(R.drawable.ic_feedback_black_24dp, "问题反馈").setActiveColorResource(R.color.MediumPurple))
                 .setFirstSelectedPosition(0)
                 .initialise();
 
