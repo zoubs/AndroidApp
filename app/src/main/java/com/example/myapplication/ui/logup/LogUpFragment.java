@@ -8,8 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.PopupWindow;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -19,8 +19,6 @@ import androidx.fragment.app.Fragment;
 import com.example.myapplication.MyUsers;
 import com.example.myapplication.R;
 
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class LogUpFragment extends Fragment {
     private boolean is_admin;
@@ -31,6 +29,8 @@ public class LogUpFragment extends Fragment {
     private EditText password;
     private EditText confirmPswd;
     private Spinner isAdmin;
+    private PopupWindow progress;
+
 
     //构造函数，传递是否为管理员界面，用于复用
     public LogUpFragment(boolean is_admin) {
@@ -62,6 +62,7 @@ public class LogUpFragment extends Fragment {
         password = view.findViewById(R.id.log_up_password);
         confirmPswd = view.findViewById(R.id.log_up_confirm_password);
         isAdmin = view.findViewById(R.id.log_up_is_admin_spinner);
+
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),R.array.is_admin_spinner,android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         isAdmin.setAdapter(adapter);
@@ -75,6 +76,8 @@ public class LogUpFragment extends Fragment {
                 String user_pswd = password.getText().toString();
                 String confirm_pswd = confirmPswd.getText().toString();
                 String user_identify = isAdmin.getSelectedItem().toString();
+                final View popipWindow_view = getLayoutInflater().inflate(R.layout.log_up_progressbar_layout,null,false);
+                progress = new PopupWindow(popipWindow_view,ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT,false);
 
                 if(user_email == null || user_email.equals("")) {
                     Toast.makeText(tmpView.getContext(), "缺少用户邮箱", Toast.LENGTH_SHORT).show();
@@ -129,11 +132,13 @@ public class LogUpFragment extends Fragment {
                     //邮箱未被注册
                     else {
                         myUsers.userLogUp(user_email,user_name,user_pswd,is_admin);
+                        progress.showAsDropDown(tmpView);
 
                         Handler handler = new Handler();
                         handler.postDelayed(new Runnable() {
                             @Override
                             public void run() {
+                                progress.dismiss();
                                 //插入成功
                                 if(myUsers.isExist(user_email)) {
                                     Toast.makeText(tmpView.getContext(), "成功", Toast.LENGTH_LONG).show();
@@ -144,7 +149,7 @@ public class LogUpFragment extends Fragment {
                                     Toast.makeText(tmpView.getContext(), "插入失败，请重试！", Toast.LENGTH_SHORT).show();
                                 }
                             }
-                        }, 1000);//1秒后执行Runnable中的run方法
+                        }, 3000);//1秒后执行Runnable中的run方法
 
 
                     }

@@ -86,9 +86,9 @@ public class MyUsers {
 
     public boolean isMatchPassword(String userEmail, String userPassword) {
         if(this.userPassword!=null && !this.userPassword.isEmpty())
-            Log.d("user",this.userPassword);
+            Log.d("ic_user",this.userPassword);
         if(!userPassword.isEmpty())
-            Log.d("user",userPassword);
+            Log.d("ic_user",userPassword);
         return userPassword.equals(getPassword(userEmail));
     }
 

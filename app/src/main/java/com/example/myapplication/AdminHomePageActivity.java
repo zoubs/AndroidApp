@@ -12,6 +12,7 @@ import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.example.myapplication.ui.find.FindFragment;
 import com.example.myapplication.ui.info.InfoFragment;
 import com.example.myapplication.ui.logup.LogUpFragment;
+import com.example.myapplication.ui.user.UserManageFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class AdminHomePageActivity extends AppCompatActivity {
@@ -19,6 +20,7 @@ public class AdminHomePageActivity extends AppCompatActivity {
     private BottomNavigationBar bottomNavigationBar;
     private FindFragment findFragment;
     private InfoFragment infoFragment;
+    private UserManageFragment userManageFragment;
     private FloatingActionButton fab;
 
     @Override
@@ -44,6 +46,7 @@ public class AdminHomePageActivity extends AppCompatActivity {
 
         findFragment = new FindFragment();
         infoFragment = new InfoFragment();
+        userManageFragment = new UserManageFragment();
         getSupportFragmentManager().beginTransaction().add(R.id.fl_admin_container,findFragment).commitAllowingStateLoss();
         //设置底部选择菜单点击状态
         bottomNavigationBar.setTabSelectedListener(new BottomNavigationBar.OnTabSelectedListener(){
@@ -66,7 +69,7 @@ public class AdminHomePageActivity extends AppCompatActivity {
                         });
                         break;
                     case 2:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.fl_admin_container,findFragment).commitAllowingStateLoss();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fl_admin_container,userManageFragment).commitAllowingStateLoss();
                         fab.show();
                         final LogUpFragment logUpFragment = new LogUpFragment(true);
                         fab.setOnClickListener(new View.OnClickListener() {

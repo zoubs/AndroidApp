@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
                 String email = emailText.getText().toString();
                 String password = pwdText.getText().toString();
                 MyUsers myUsers = new MyUsers(url,user,pswd);
-                Log.d("user",email);
+                Log.d("ic_user",email);
                 Log.d("pass",password);
                 //复杂
                 if(myUsers.isMatchPassword(email,password)) {
