@@ -1,11 +1,8 @@
 package com.example.myapplication;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
 
 import android.annotation.SuppressLint;
-import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -14,6 +11,7 @@ import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.example.myapplication.ui.find.FindFragment;
 import com.example.myapplication.ui.info.InfoFragment;
+import com.example.myapplication.ui.logup.LogUpFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class AdminHomePageActivity extends AppCompatActivity {
@@ -54,7 +52,7 @@ public class AdminHomePageActivity extends AppCompatActivity {
             public void onTabSelected(int position) {
                 switch (position) {
                     case 0:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.fl_admin_container,findFragment).commitAllowingStateLoss();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fl_admin_container,findFragment).addToBackStack(null).commitAllowingStateLoss();
                         fab.hide();
                         break;
                     case 1:
@@ -70,12 +68,17 @@ public class AdminHomePageActivity extends AppCompatActivity {
                     case 2:
                         getSupportFragmentManager().beginTransaction().replace(R.id.fl_admin_container,findFragment).commitAllowingStateLoss();
                         fab.show();
+                        final LogUpFragment logUpFragment = new LogUpFragment(true);
                         fab.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
                                 Toast.makeText(AdminHomePageActivity.this, "用户", Toast.LENGTH_SHORT).show();
+                                getSupportFragmentManager().beginTransaction().add(R.id.fl_admin_container,logUpFragment).addToBackStack(null).commitAllowingStateLoss();
+                                fab.hide();
                             }
                         });
+                        //fab.show();
+
                         break;
                     case 3:
                         getSupportFragmentManager().beginTransaction().replace(R.id.fl_admin_container,infoFragment).commitAllowingStateLoss();
@@ -92,9 +95,11 @@ public class AdminHomePageActivity extends AppCompatActivity {
             }
             @Override
             public void onTabReselected(int position) {
+                if(position == 1 || position == 2) {
+                    fab.show();
+                }
             }
         });
-
-
     }
+
 }
