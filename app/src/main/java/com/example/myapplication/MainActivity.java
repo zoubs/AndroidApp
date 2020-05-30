@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText emailText,pwdText;
 
     //database connect
-    private String url = "jdbc:mysql://192.168.3.6:3306/android_db?useSSL=false";
+    private String url = "jdbc:mysql://192.168.3.6:3306/android_db?useSSL=false&allowPublicKeyRetrieval=true";
     private String user = "android";
     private String pswd = "android";
 
@@ -52,13 +52,16 @@ public class MainActivity extends AppCompatActivity {
                 String email = emailText.getText().toString();
                 String password = pwdText.getText().toString();
                 MyUsers myUsers = new MyUsers(url,user,pswd);
-                Log.d("user",email);
+                Log.d("ic_user",email);
                 Log.d("pass",password);
                 //复杂
                 if(myUsers.isMatchPassword(email,password)) {
                     //Toast.makeText(MainActivity.this, "登录成功！", Toast.LENGTH_SHORT).show();
 
                     save(email,password);
+
+                    System.out.print("isExist:");
+                    System.out.println(myUsers.isExist(email));
 
                     Bundle bundle = new Bundle();
                     bundle.putString("email",email);
