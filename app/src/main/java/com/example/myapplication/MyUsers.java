@@ -29,9 +29,14 @@ public class MyUsers {
         flag = false;
     }
 
+    //默认初始化
+    public MyUsers() {
+        this.url = "jdbc:mysql://192.168.3.6:3306/android_db?useSSL=false&allowPublicKeyRetrieval=true";
+        this.user = "android";
+        this.pswd = "android";
+    }
+
     //获取用户密码
-    //email     需要获取密码的用户名
-    //return    密码/null
     private String getPassword(String email) {
         MyThreadReturn myThreadReturn = new MyThreadReturn(email);
         Thread thread = new Thread(myThreadReturn);
@@ -52,6 +57,7 @@ public class MyUsers {
         return userPassword;
     }
 
+    //添加用户shuju
     public void userLogUp(final String userEmail, final String userName, final String userPassword, final boolean isAdmin) {
         new Thread(new Runnable() {
             @Override
@@ -81,9 +87,9 @@ public class MyUsers {
             }
         }).start();//开始线程
 
-
     }
 
+    //密码是否匹配
     public boolean isMatchPassword(String userEmail, String userPassword) {
         if(this.userPassword!=null && !this.userPassword.isEmpty())
             Log.d("ic_user",this.userPassword);
@@ -92,10 +98,58 @@ public class MyUsers {
         return userPassword.equals(getPassword(userEmail));
     }
 
+    //是否为管理员
     public boolean isAdmin() {
         return is_admin;
     }
 
+    //管理员更新用户数据
+    public void userAlter(final String email, final String name, final int is_admin) {
+
+        Thread thread;
+        thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    //连接到mysql
+                    Class.forName("com.mysql.jdbc.Driver");
+                    java.sql.Connection conn = DriverManager.getConnection(url,user,pswd);
+                    String sql = "update users set userName = ? where userEmail = ?;";
+
+                    PreparedStatement psmt = conn.prepareStatement(sql);
+                    psmt.setString(1,name);
+                    psmt.setString(2,email);
+                    psmt.executeUpdate();
+
+                    if(is_admin != 0) {
+                        sql = "update users set is_admin = ? where userEmail = ?;";
+                        psmt =conn.prepareStatement(sql);
+                        psmt.setBoolean(1,(is_admin==1 ? true : false));
+                        psmt.setString(2,email);
+                        psmt.executeUpdate();
+                    }
+
+                    conn.close();
+                    psmt.close();
+                    Log.d("success","链接成功");
+                } catch (ClassNotFoundException e) {
+                    Log.d("error","链接失败");
+                    e.printStackTrace();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        });//开始线程
+
+        thread.start();
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    //是否存在
     public boolean isExist(String userEmail) {
         //flag = false;
         countExisted.setStatus(false);
@@ -113,19 +167,14 @@ public class MyUsers {
         return countExisted.getStatus();
     }
 
-    public static void callback() {
-        System.out.println("子线程结束");
-        flag = true;
-    }
-
     //私有类，处理Thread线程
     private class MyThreadReturn implements Runnable {
 
         private String tmpEmail;
         private String returnPswd;
         private boolean is_admin;
-        //构造函数
-        // 传参
+
+        //构造函数 传参
         MyThreadReturn(String email) {
             this.tmpEmail = email;
         }
@@ -160,7 +209,6 @@ public class MyUsers {
                 e.printStackTrace();
             }
         }
-
 
         public String getReturnPassword() {
             if(returnPswd!=null && !returnPswd.isEmpty())
