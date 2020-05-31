@@ -101,6 +101,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.UserViewHolder> {
                 btn_delete.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        Toast.makeText(context, "this is delete!", Toast.LENGTH_SHORT).show();
                         dialog.cancel();
                     }
                 });
