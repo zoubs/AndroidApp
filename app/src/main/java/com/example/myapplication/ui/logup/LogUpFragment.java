@@ -18,6 +18,8 @@ import androidx.fragment.app.Fragment;
 
 import com.example.myapplication.MyUsers;
 import com.example.myapplication.R;
+import com.example.myapplication.ui.user.UserInformation;
+import com.example.myapplication.ui.user.UserManageFragment;
 
 
 public class LogUpFragment extends Fragment {
@@ -72,7 +74,7 @@ public class LogUpFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 final String user_email = userEmail.getText().toString();
-                String user_name = userName.getText().toString();
+                final String user_name = userName.getText().toString();
                 String user_pswd = password.getText().toString();
                 String confirm_pswd = confirmPswd.getText().toString();
                 String user_identify = isAdmin.getSelectedItem().toString();
@@ -118,7 +120,7 @@ public class LogUpFragment extends Fragment {
                     userName.setBackgroundResource(0);
                     password.setBackgroundResource(0);
                     confirmPswd.setBackgroundResource(0);
-                    boolean is_admin = (user_identify.equals("管理员"))? true : false;
+                    final boolean is_admin = (user_identify.equals("管理员"))? true : false;
 
                     //database connect
                     final MyUsers myUsers = new MyUsers("jdbc:mysql://192.168.3.6:3306/android_db?useSSL=false&allowPublicKeyRetrieval=true",
@@ -142,6 +144,15 @@ public class LogUpFragment extends Fragment {
                                 //插入成功
                                 if(myUsers.isExist(user_email)) {
                                     Toast.makeText(tmpView.getContext(), "成功", Toast.LENGTH_LONG).show();
+                                    UserManageFragment userManageFragment = (UserManageFragment)getActivity().getSupportFragmentManager().findFragmentByTag("userManageFragment");
+                                    if(userManageFragment == null) {
+                                        Toast.makeText(getContext(), "fuck wrong", Toast.LENGTH_SHORT).show();
+                                    }
+                                    else {
+                                        userManageFragment.addUser(new UserInformation(user_name,user_email,is_admin));
+                                        Toast.makeText(getContext(), "success", Toast.LENGTH_SHORT).show();
+                                    }
+
                                     getActivity().getSupportFragmentManager().popBackStack();
                                 }
                                 //插入失败

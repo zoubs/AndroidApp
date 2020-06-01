@@ -57,7 +57,7 @@ public class MyUsers {
         return userPassword;
     }
 
-    //添加用户shuju
+    //添加用户数据
     public void userLogUp(final String userEmail, final String userName, final String userPassword, final boolean isAdmin) {
         new Thread(new Runnable() {
             @Override
@@ -101,6 +101,42 @@ public class MyUsers {
     //是否为管理员
     public boolean isAdmin() {
         return is_admin;
+    }
+
+    //删除
+    public void userDelete(final String email) {
+        Thread thread;
+        thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    //连接到mysql
+                    Class.forName("com.mysql.jdbc.Driver");
+                    java.sql.Connection conn = DriverManager.getConnection(url,user,pswd);
+                    String sql = "delete from users where userEmail = ?;";
+
+                    PreparedStatement psmt = conn.prepareStatement(sql);
+                    psmt.setString(1,email);
+                    psmt.execute();
+
+                    conn.close();
+                    psmt.close();
+                    Log.d("success","链接成功");
+                } catch (ClassNotFoundException e) {
+                    Log.d("error","链接失败");
+                    e.printStackTrace();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        });//开始线程
+
+        thread.start();
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     //管理员更新用户数据
