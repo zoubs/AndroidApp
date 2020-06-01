@@ -1,16 +1,12 @@
 package com.example.myapplication;
 
-import android.os.Message;
+
 import android.util.Log;
-
-import com.mysql.jdbc.Statement;
-
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Handler;
-import java.util.logging.LogRecord;
+
 
 public class MyUsers {
     private String url;             //MySql的URL
