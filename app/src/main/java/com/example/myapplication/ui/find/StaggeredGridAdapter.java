@@ -31,11 +31,11 @@ public class StaggeredGridAdapter extends RecyclerView.Adapter<StaggeredGridAdap
     public void onBindViewHolder(@NonNull StaggeredGridAdapter.StaggeredGridViewHolder holder, int position) {
         holder.textView.setText("Hello world!");
         if((position % 2) == 1) {
-            holder.imageView.setImageResource(R.drawable.image1);
+            holder.imageView.setImageResource(R.drawable.apple);
             holder.linearLayout.setBackground(mContext.getDrawable( R.drawable.test_image_border2));
         }
         else {
-            holder.imageView.setImageResource(R.drawable.image2);
+            holder.imageView.setImageResource(R.drawable.orange);
             //holder.linearLayout.setBackgroundColor(Color.parseColor("#98FB98"));
             holder.linearLayout.setBackground(mContext.getDrawable( R.drawable.test_image_border1));
         }
