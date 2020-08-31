@@ -52,9 +52,9 @@ public class UserManageFragment extends Fragment {
                     //连接到mysql
                     Class.forName("com.mysql.jdbc.Driver");
                     java.sql.Connection conn = DriverManager.getConnection(
-                            "jdbc:mysql://192.168.3.6:3306/android_db?useSSL=false&allowPublicKeyRetrieval=true",
+                            "jdbc:mysql://39.101.211.144:3306/android_db?useSSL=false&allowPublicKeyRetrieval=true",
                             "android",
-                            "android");
+                            "android123456");
                     String sql = "select userName,userEmail,is_admin from users";
 
                     PreparedStatement psmt = conn.prepareStatement(sql);

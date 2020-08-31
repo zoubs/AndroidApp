@@ -123,9 +123,9 @@ public class LogUpFragment extends Fragment {
                     final boolean is_admin = (user_identify.equals("管理员"))? true : false;
 
                     //database connect
-                    final MyUsers myUsers = new MyUsers("jdbc:mysql://192.168.3.6:3306/android_db?useSSL=false&allowPublicKeyRetrieval=true",
+                    final MyUsers myUsers = new MyUsers("jdbc:mysql://39.101.211.144:3306/android_db?useSSL=false&allowPublicKeyRetrieval=true",
                             "android",
-                            "android");
+                            "android123456");
 
                     //邮箱已被注册
                     if(myUsers.isExist(user_email)) {

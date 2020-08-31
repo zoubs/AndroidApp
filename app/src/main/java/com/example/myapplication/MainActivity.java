@@ -21,9 +21,9 @@ public class MainActivity extends AppCompatActivity {
     private EditText emailText,pwdText;
 
     //database connect
-    private String url = "jdbc:mysql://192.168.3.6:3306/android_db?useSSL=false&allowPublicKeyRetrieval=true";
+    private String url = "jdbc:mysql://39.101.211.144:3306/android_db?useSSL=false&allowPublicKeyRetrieval=true";
     private String user = "android";
-    private String pswd = "android";
+    private String pswd = "android123456";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -27,9 +27,9 @@ public class MyUsers {
 
     //默认初始化
     public MyUsers() {
-        this.url = "jdbc:mysql://192.168.3.6:3306/android_db?useSSL=false&allowPublicKeyRetrieval=true";
+        this.url = "jdbc:mysql://39.101.211.144:3306/android_db?useSSL=false&allowPublicKeyRetrieval=true";
         this.user = "android";
-        this.pswd = "android";
+        this.pswd = "android123456";
     }
 
     //获取用户密码
