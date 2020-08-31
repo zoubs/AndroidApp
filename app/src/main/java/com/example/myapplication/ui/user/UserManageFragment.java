@@ -5,14 +5,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -31,6 +28,7 @@ public class UserManageFragment extends Fragment {
 
     private RecyclerView recyclerView;
     static List<UserInformation> users;
+    private RVAdapter rvAdapter = null;
 
     @Nullable
     @Override
@@ -54,9 +52,9 @@ public class UserManageFragment extends Fragment {
                     //连接到mysql
                     Class.forName("com.mysql.jdbc.Driver");
                     java.sql.Connection conn = DriverManager.getConnection(
-                            "jdbc:mysql://192.168.3.6:3306/android_db?useSSL=false&allowPublicKeyRetrieval=true",
+                            "jdbc:mysql://39.101.211.144:3306/android_db?useSSL=false&allowPublicKeyRetrieval=true",
                             "android",
-                            "android");
+                            "android123456");
                     String sql = "select userName,userEmail,is_admin from users";
 
                     PreparedStatement psmt = conn.prepareStatement(sql);
@@ -92,7 +90,9 @@ public class UserManageFragment extends Fragment {
 
         recyclerView = view.findViewById(R.id.user_info_rv);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.setAdapter(new RVAdapter(getActivity(),users));
+        rvAdapter = new RVAdapter(getActivity(),users);
+        recyclerView.setAdapter(rvAdapter);
+
         //recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(),DividerItemDecoration.VERTICAL));
 
         HashMap<String, Integer> stringIntegerHashMap = new HashMap<>();
@@ -105,5 +105,11 @@ public class UserManageFragment extends Fragment {
         stringIntegerHashMap.put(RecyclerViewSpacesItemDecoration.RIGHT_DECORATION,20);//右间距
 
         recyclerView.addItemDecoration(new RecyclerViewSpacesItemDecoration(stringIntegerHashMap));
+    }
+
+    public void addUser(UserInformation newUser) {
+        if(rvAdapter != null) {
+            rvAdapter.addDataAt(newUser);
+        }
     }
 }

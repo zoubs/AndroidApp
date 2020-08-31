@@ -69,14 +69,14 @@ public class AdminHomePageActivity extends AppCompatActivity {
                         });
                         break;
                     case 2:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.fl_admin_container,userManageFragment).commitAllowingStateLoss();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fl_admin_container,userManageFragment, "userManageFragment").commitAllowingStateLoss();
                         fab.show();
                         final LogUpFragment logUpFragment = new LogUpFragment(true);
                         fab.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
                                 Toast.makeText(AdminHomePageActivity.this, "用户", Toast.LENGTH_SHORT).show();
-                                getSupportFragmentManager().beginTransaction().add(R.id.fl_admin_container,logUpFragment).addToBackStack(null).commitAllowingStateLoss();
+                                getSupportFragmentManager().beginTransaction().add(R.id.fl_admin_container,logUpFragment,"logUpFragment").addToBackStack(null).commitAllowingStateLoss();
                                 fab.hide();
                             }
                         });
