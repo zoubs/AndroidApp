@@ -55,7 +55,7 @@ public class UserManageFragment extends Fragment {
                             "jdbc:mysql://39.101.211.144:3306/android_db?useSSL=false&allowPublicKeyRetrieval=true",
                             "android",
                             "android123456");
-                    String sql = "select userName,userEmail,is_admin from users";
+                    String sql = "select username,userEmail,is_admin from users";
 
                     PreparedStatement psmt = conn.prepareStatement(sql);
 
@@ -63,7 +63,7 @@ public class UserManageFragment extends Fragment {
 
                     while(rs.next()) {
                         users.add(new UserInformation(
-                                rs.getString("userName"),
+                                rs.getString("username"),
                                 rs.getString("userEmail"),
                                 rs.getBoolean("is_admin")));
                     }

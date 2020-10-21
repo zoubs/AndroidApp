@@ -11,12 +11,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AdminHomePageActivity" android:windowSoftInputMode="adjustPan|stateHidden"></activity>
+        <activity android:name=".SignUpActivity"></activity>
+        <activity
+            android:name=".AdminHomePageActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity
             android:name=".HomePageActivity"
             android:label="@string/title_activity_home_page"
-            android:theme="@style/AppTheme.NoActionBar" android:windowSoftInputMode="adjustPan|stateHidden"/>
-        <activity android:name=".MainActivity" android:windowSoftInputMode="adjustPan|stateHidden">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".MainActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

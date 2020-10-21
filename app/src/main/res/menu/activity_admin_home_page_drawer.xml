@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:title="@string/menu_home" />
+
+        <item
+            android:id="@+id/nav_recommend"
+            android:title="@string/menu_recommend" />
+
+        <item
+            android:id="@+id/nav_gallery"
+            android:title="@string/menu_find" />
+        <item
+            android:id="@+id/nav_slideshow"
+            android:title="@string/menu_record_food" />
+        <item
+            android:id="@+id/nav_tools"
+            android:title="@string/menu_record_sleep" />
+    </group>
+
+    <item android:title="其他">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:title="@string/menu_info" />
+            <item
+                android:id="@+id/nav_send"
+                android:title="@string/menu_feedback" />
+        </menu>
+    </item>
+
+</menu>

@@ -11,13 +11,12 @@ import android.widget.EditText;
 import com.example.myapplication.util.ToastUtil;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button mBtnLogin;
+    private Button mBtnLogin, mBtnSignUp;
     private EditText emailText,pwdText;
 
     //database connect
@@ -34,8 +33,18 @@ public class MainActivity extends AppCompatActivity {
         emailText = findViewById(R.id.emailText);
         pwdText = findViewById(R.id.pwdText);
         mBtnLogin = findViewById(R.id.mBtnLogin);
+        mBtnSignUp = findViewById(R.id.mBtnSignUp);
 
-        String storeEmail = getEmail();
+        mBtnSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //跳转至注册页面
+                Intent intent = new Intent(MainActivity.this, SignUpActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        final String storeEmail = getEmail();
         String storePassword = getPassword();
 
         if(storeEmail != null && !storeEmail.isEmpty()) {
@@ -52,6 +61,9 @@ public class MainActivity extends AppCompatActivity {
                 String email = emailText.getText().toString();
                 String password = pwdText.getText().toString();
                 MyUsers myUsers = new MyUsers(url,user,pswd);
+                //fixme 有登录功能了记得删除
+                Intent testIntent = new Intent(MainActivity.this, HomePageActivity.class);
+                startActivity(testIntent);
                 Log.d("ic_user",email);
                 Log.d("pass",password);
                 //复杂

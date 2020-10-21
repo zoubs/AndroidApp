@@ -2,6 +2,7 @@
     <string name="app_name">My Application</string>
     <string name="loginPwd">登录密码</string>
     <string name="loginEmail">登录邮箱</string>
+    <string name="loginUserName">用户名</string>
     <string name="forget"><u>忘了密码？</u></string>
     <string name="title_activity_home_page">HomePageActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>

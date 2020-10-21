@@ -1,13 +1,16 @@
 package com.example.myapplication;
 
+import android.content.ClipData;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -26,7 +29,6 @@ import android.widget.TextView;
 public class HomePageActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,9 +43,10 @@ public class HomePageActivity extends AppCompatActivity {
 
         TextView userName = headerView.findViewById(R.id.nav_user_name);
 
-        //Log.d("test",userName.getText().toString());
+        //Log.d("test",username.getText().toString());
         //设置任务栏用户名（暂用邮箱替代）
-        userName.setText(preBundle.getString("email"));
+        //fixme 取消注释
+        //userName.setText(preBundle.getString("email"));
 
 
 
@@ -59,7 +62,30 @@ public class HomePageActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+        //todo 检查根据点击进行界面跳转是否正确
 
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.nav_home: //主页
+                        break;
+                    case R.id.nav_recommend:  //食物推荐
+                        break;
+                    case R.id.nav_gallery: //食物查询
+                        break;
+                    case R.id.nav_slideshow:  //记录饮食
+                        break;
+                    case R.id.nav_tools: //记录睡眠
+                        break;
+                    case R.id.nav_share: //个人信息
+                        break;
+                    case R.id.nav_send: //用户反馈
+                        break;
+                }
+                return true;
+            }
+        });
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
@@ -85,4 +111,6 @@ public class HomePageActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
+
 }

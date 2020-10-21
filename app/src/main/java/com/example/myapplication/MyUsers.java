@@ -62,7 +62,7 @@ public class MyUsers {
                     //连接到mysql
                     Class.forName("com.mysql.jdbc.Driver");
                     java.sql.Connection conn = DriverManager.getConnection(url,user,pswd);
-                    String sql = "insert into users (userEmail,userName,userPassword,is_admin) value (?,?,?,?);";
+                    String sql = "insert into users (userEmail,username,userPassword,is_admin) value (?,?,?,?);";
 
                     PreparedStatement psmt = conn.prepareStatement(sql);
                     psmt.setString(1,userEmail);
@@ -146,7 +146,7 @@ public class MyUsers {
                     //连接到mysql
                     Class.forName("com.mysql.jdbc.Driver");
                     java.sql.Connection conn = DriverManager.getConnection(url,user,pswd);
-                    String sql = "update users set userName = ? where userEmail = ?;";
+                    String sql = "update users set username = ? where userEmail = ?;";
 
                     PreparedStatement psmt = conn.prepareStatement(sql);
                     psmt.setString(1,name);

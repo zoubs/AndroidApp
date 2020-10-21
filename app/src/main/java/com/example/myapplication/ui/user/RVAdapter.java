@@ -152,7 +152,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.UserViewHolder> {
                 });
 
                 dialog.show();
-                //Toast.makeText(context, "hey!"+userName, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(context, "hey!"+username, Toast.LENGTH_SHORT).show();
                 return true;
             }
         });
