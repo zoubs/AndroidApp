@@ -5,33 +5,22 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_home"
+            android:id="@+id/nav_admin_home"
             android:title="@string/menu_home" />
 
         <item
-            android:id="@+id/nav_recommend"
-            android:title="@string/menu_recommend" />
+            android:id="@+id/nav_add_user"
+            android:title="@string/add_user" />
 
         <item
-            android:id="@+id/nav_gallery"
-            android:title="@string/menu_find" />
+            android:id="@+id/nav_del_user"
+            android:title="@string/del_user" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:title="@string/menu_record_food" />
+            android:id="@+id/nav_mod_user"
+            android:title="@string/mod_user" />
         <item
-            android:id="@+id/nav_tools"
-            android:title="@string/menu_record_sleep" />
+            android:id="@+id/nav_search_user"
+            android:title="@string/search_user" />
     </group>
-
-    <item android:title="其他">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:title="@string/menu_info" />
-            <item
-                android:id="@+id/nav_send"
-                android:title="@string/menu_feedback" />
-        </menu>
-    </item>
 
 </menu>

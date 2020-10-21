@@ -20,6 +20,10 @@
     <string name="menu_feedback">问题反馈</string>
     <string name="menu_recommend">食物推荐</string>
     <string name="add_user">添加用户</string>
+    <string name="del_user">删除用户</string>
+    <string name="mod_user">修改用户</string>
+    <string name="search_user">查询用户</string>
+
     <string-array name="is_admin_spinner">
         <item>普通用户</item>
         <item>管理员</item>

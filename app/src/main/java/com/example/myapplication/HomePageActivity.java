@@ -45,6 +45,7 @@ public class HomePageActivity extends AppCompatActivity {
 
         //Log.d("test",username.getText().toString());
         //设置任务栏用户名（暂用邮箱替代）
+
         //fixme 取消注释
         //userName.setText(preBundle.getString("email"));
 
