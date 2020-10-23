@@ -64,7 +64,7 @@ public class HomePageActivity extends AppCompatActivity {
             }
         });
         //todo 检查根据点击进行界面跳转是否正确
-
+        /*
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -86,7 +86,8 @@ public class HomePageActivity extends AppCompatActivity {
                 }
                 return true;
             }
-        });
+        });*/
+
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(

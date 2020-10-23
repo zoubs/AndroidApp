@@ -22,14 +22,7 @@
 
     </com.ashokvarma.bottomnavigation.BottomNavigationBar>
 
-    <com.google.android.material.navigation.NavigationView
-        android:id="@+id/nav_admin_view"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:fitsSystemWindows="true"
-        app:headerLayout="@layout/nav_header_home_page"
-        app:menu="@menu/activity_admin_home_page_drawer" />
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/admin_fab"

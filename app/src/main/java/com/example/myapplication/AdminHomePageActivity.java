@@ -43,7 +43,7 @@ public class AdminHomePageActivity extends AppCompatActivity {
                 .addItem(new BottomNavigationItem(R.drawable.ic_feedback_black_24dp, "问题反馈").setActiveColorResource(R.color.MediumPurple))
                 .setFirstSelectedPosition(0)
                 .initialise();
-
+        //FIXME 页面上点击+号后，再次点击应用会闪退
         findFragment = new FindFragment();
         infoFragment = new InfoFragment();
         userManageFragment = new UserManageFragment();
