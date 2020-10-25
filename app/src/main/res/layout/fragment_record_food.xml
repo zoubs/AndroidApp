@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -16,4 +16,114 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/text_food"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_below="@id/text_slideshow"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="40dp"
+        android:text="食物："
+        android:textSize="25sp" />
+
+    <EditText
+        android:id="@+id/et_food_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_slideshow"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="10dp"
+        android:layout_toRightOf="@id/text_food"
+        android:background="@drawable/bg_input"
+        android:drawableRight="@drawable/down_arrow"
+        android:padding="5dp"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/text_carbohydrate"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_below="@id/text_food"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="65dp"
+        android:text="碳水："
+        android:textSize="25sp" />
+
+    <EditText
+        android:id="@+id/et_cabohydrate"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@id/et_food_input"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="45dp"
+        android:layout_marginRight="10dp"
+        android:layout_toRightOf="@id/text_carbohydrate"
+        android:background="@drawable/bg_input"
+        android:padding="5dp"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/text_fat"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_below="@id/text_carbohydrate"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="43dp"
+        android:text="脂肪："
+        android:textSize="25sp" />
+
+    <EditText
+        android:id="@+id/et_fat"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@id/et_cabohydrate"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="46dp"
+        android:layout_marginRight="10dp"
+        android:layout_toRightOf="@id/text_fat"
+        android:background="@drawable/bg_input"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/text_pr"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_below="@id/text_fat"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="50dp"
+        android:text="蛋白质："
+        android:textSize="25sp" />
+
+    <EditText
+        android:id="@+id/et_pr"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@id/et_fat"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="45dp"
+        android:layout_marginRight="10dp"
+        android:layout_toRightOf="@id/text_pr"
+        android:background="@drawable/bg_input"
+        android:padding="5dp"
+        android:textSize="20sp" />
+    <Button
+        android:id="@+id/btn_food_record"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="查询饮食数据"
+        android:textSize="25sp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="100dp"
+        android:layout_below="@id/text_pr"/>
+    <Button
+        android:id="@+id/btn_food_submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="保存"
+        android:textSize="25sp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="100dp"
+        android:layout_below="@id/text_pr"
+        android:layout_toRightOf="@id/btn_food_record"/>
+</RelativeLayout>

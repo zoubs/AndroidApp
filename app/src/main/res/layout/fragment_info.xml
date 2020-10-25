@@ -14,14 +14,152 @@
         android:textSize="25sp" />
 
     <EditText
+        android:id="@+id/et_user_nickname"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="34dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
         android:layout_toRightOf="@id/text_nickname"
+        android:background="@drawable/bg_input"
         android:hint="不超过6个字符"
         android:maxLines="1"
         android:textSize="25sp" />
 
+    <TextView
+        android:id="@+id/text_user_birthday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_nickname"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:text="生日:"
+        android:textSize="25sp" />
+
+    <EditText
+        android:id="@+id/et_user_birthday"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/et_user_nickname"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@id/text_user_birthday"
+        android:background="@drawable/bg_input"
+        android:maxLines="1"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/text_user_sex"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_user_birthday"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:text="性别:"
+        android:textSize="25sp" />
+
+    <RadioGroup
+        android:id="@+id/user_sex_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/et_user_birthday"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@id/text_user_sex"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rb_man"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:gravity="center"
+            android:text="男"
+            android:textSize="20sp" />
+
+        <RadioButton
+            android:id="@+id/rb_woman"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="女"
+            android:textSize="20sp" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/text_user_height"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_user_sex"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:text="身高:"
+        android:textSize="25sp" />
+
+    <EditText
+        android:id="@+id/et_user_height"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/user_sex_group"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@id/text_user_height"
+        android:background="@drawable/bg_input"
+        android:maxLines="1"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/text_user_weight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_user_height"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:text="体重:"
+        android:textSize="25sp" />
+
+    <EditText
+        android:id="@+id/et_user_weight"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/et_user_height"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@id/text_user_weight"
+        android:background="@drawable/bg_input"
+        android:maxLines="1"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/text_user_blood_pressure"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_user_weight"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:text="血压:"
+        android:textSize="25sp" />
+
+    <EditText
+        android:id="@+id/et_user_blood_pressure"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/et_user_weight"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@id/text_user_blood_pressure"
+        android:background="@drawable/bg_input"
+        android:maxLines="1"
+        android:textSize="25sp" />
+
+    <Button
+        android:id="@+id/user_info_submit"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/et_user_blood_pressure"
+        android:layout_marginLeft="150dp"
+        android:layout_marginTop="30dp"
+        android:text="保存"
+        android:textSize="25sp" />
     <!--
     <WebView
         android:id="@+id/wv"
