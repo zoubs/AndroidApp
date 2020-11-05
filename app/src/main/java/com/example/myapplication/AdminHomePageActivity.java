@@ -3,12 +3,14 @@ package com.example.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
+import com.example.myapplication.ui.adminmodule.FoodManagerActivity;
 import com.example.myapplication.ui.find.FindFragment;
 import com.example.myapplication.ui.info.InfoFragment;
 import com.example.myapplication.ui.logup.LogUpFragment;
@@ -59,7 +61,8 @@ public class AdminHomePageActivity extends AppCompatActivity {
                         fab.hide();
                         break;
                     case 1:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.fl_admin_container,infoFragment).commitAllowingStateLoss();
+                        Intent intent = new Intent(AdminHomePageActivity.this, FoodManagerActivity.class);
+                        startActivity(intent);
                         fab.show();
                         fab.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -84,7 +87,8 @@ public class AdminHomePageActivity extends AppCompatActivity {
 
                         break;
                     case 3:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.fl_admin_container,infoFragment).commitAllowingStateLoss();
+                        Intent intent2 = new Intent(AdminHomePageActivity.this, FoodManagerActivity.class);
+                        startActivity(intent2);
                         fab.hide();
                         break;
                     default:

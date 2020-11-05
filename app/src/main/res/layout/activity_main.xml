@@ -1,44 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="horizontal"
     tools:context=".MainActivity">
+    <LinearLayout
+        android:layout_width="80dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingRight="8dp"
+        android:gravity="right">
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/username"
+            android:layout_marginTop="175dp"/>
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/password"
+            android:layout_marginTop="20dp"
+            />
+
+
+    </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="25dp">
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:text="健康管理系统"
             android:textSize="40sp"
-            android:layout_gravity="center"
             android:layout_marginTop="50dp"/>
 
         <EditText
             android:id="@+id/emailText"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_marginTop="70dp"
-            android:drawableLeft="@drawable/username"
-            android:drawablePadding="5dp"
             android:hint="@string/loginUserName"
-            android:textSize="20sp"
+            android:textSize="25sp"
             android:inputType="textEmailAddress" />
 
         <EditText
             android:id="@+id/pwdText"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:drawableLeft="@drawable/password"
-            android:drawablePadding="5dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
             android:hint="@string/loginPwd"
-            android:textSize="20sp"
+            android:textSize="25sp"
             android:inputType="textPassword" />
 
         <TextView
@@ -54,7 +70,7 @@
             android:id="@+id/mBtnLogin"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:layout_gravity="center"
+            android:layout_marginLeft="80dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/circle_button_login"
             android:text="登录"
@@ -64,14 +80,15 @@
         <Button
             android:id="@+id/mBtnSignUp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_height="50dp"
+            android:layout_marginLeft="60dp"
             android:layout_marginTop="20dp"
             android:drawableLeft="@drawable/signup"
             android:text="注册"
+            android:background="#FFEC8B"
             android:textSize="25sp">
 
         </Button>
     </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

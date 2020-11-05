@@ -30,6 +30,7 @@ public class FindFragment extends Fragment {
         mRvWf.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
         mRvWf.setAdapter(new StaggeredGridAdapter(getActivity()));
         mRvWf.addItemDecoration(new MyDecoration());
+        //todo 查询食物这块，不知道食物数据存在哪里，你看看这块应该怎么写比较好
 
         return root;
     }

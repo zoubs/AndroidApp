@@ -1,10 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="horizontal"
     tools:context=".SignUpActivity">
+
+    <LinearLayout
+        android:layout_width="80dp"
+        android:layout_height="match_parent"
+        android:gravity="right"
+        android:orientation="vertical"
+        android:paddingRight="10dp">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="100dp"
+            android:src="@drawable/username" />
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/password" />
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/password" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,47 +46,46 @@
             android:text="欢迎注册"
             android:textSize="25sp"
             android:textColor="#3300FF"
-            android:gravity="center"/>
+            android:paddingLeft="65dp"/>
         <EditText
             android:id="@+id/signup_user_email"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_marginTop="50dp"
             android:hint="@string/loginEmail"
-            android:drawableLeft="@drawable/username"
             android:drawablePadding="5dp"
-            android:textSize="20dp"
+            android:textSize="25dp"
             android:inputType="textEmailAddress"/>
         <EditText
             android:id="@+id/signup_user_pswd"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
             android:hint="@string/loginPwd"
-            android:drawableLeft="@drawable/password"
             android:drawablePadding="5dp"
-            android:textSize="20dp"
+            android:textSize="25dp"
             android:inputType="textPassword"/>
         <EditText
             android:id="@+id/signup_user_pswd_confirm"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
             android:hint="确认密码"
-            android:drawableLeft="@drawable/password"
             android:drawablePadding="5dp"
-            android:textSize="20dp"
+            android:textSize="25dp"
             android:inputType="textPassword"/>
+
         <Button
             android:id="@+id/SignUp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="65dp"
+            android:layout_marginTop="40dp"
             android:drawableLeft="@drawable/signup"
             android:text="注册"
+            android:background="@drawable/bg_button"
             android:textSize="25sp">
 
         </Button>
     </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

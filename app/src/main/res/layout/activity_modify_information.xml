@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F8F8FF">
+
+    <TextView
+        android:id="@+id/text_nickname_modify"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="50dp"
+        android:text="昵 称:"
+        android:textSize="25sp" />
+
+    <EditText
+        android:id="@+id/et_user_nickname_modify"
+        android:layout_width="250dp"
+        android:imeOptions="actionNone"
+        android:inputType="text"
+        android:lines="1"
+        android:layout_height="50dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="50dp"
+        android:layout_toRightOf="@id/text_nickname_modify"
+        android:background="@drawable/bg_input"
+        android:hint="不超过6个字符"
+        android:maxLines="1"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/text_user_birthday_modify"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_below="@id/text_nickname_modify"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="30dp"
+        android:text="生 日:"
+        android:textSize="25sp" />
+
+    <EditText
+        android:id="@+id/et_user_birthday_modify"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/et_user_nickname_modify"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="30dp"
+        android:layout_toEndOf="@id/text_user_birthday_modify"
+        android:background="@drawable/bg_input"
+        android:maxLines="1"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/text_user_sex_modify"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_below="@id/text_user_birthday_modify"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="30dp"
+        android:text="性 别:"
+        android:textSize="25sp" />
+
+    <RadioGroup
+        android:id="@+id/user_sex_group_modify"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_below="@id/et_user_birthday_modify"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="30dp"
+        android:layout_toRightOf="@id/text_user_sex_modify"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rb_man"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:checked="true"
+            android:gravity="center"
+            android:text="男"
+            android:textSize="20sp" />
+
+        <RadioButton
+            android:id="@+id/rb_woman"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginStart="10dp"
+            android:text="女"
+            android:textSize="20sp" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/text_user_height_modify"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_below="@id/text_user_sex_modify"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="30dp"
+        android:text="身 高:"
+        android:textSize="25sp" />
+
+    <EditText
+        android:id="@+id/et_user_height_modify"
+        android:inputType="numberDecimal|number"
+        android:imeOptions="actionNext"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/user_sex_group_modify"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="30dp"
+        android:layout_toEndOf="@id/text_user_height_modify"
+        android:background="@drawable/bg_input"
+        android:maxLines="1"
+        android:textSize="25sp" />
+
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/user_sex_group_modify"
+        android:text="厘米"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:layout_marginTop="30dp"
+        android:layout_toRightOf="@id/et_user_height_modify" />
+
+    <TextView
+        android:id="@+id/text_user_weight_modify"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_below="@id/text_user_height_modify"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="30dp"
+        android:text="体 重:"
+        android:textSize="25sp" />
+
+    <EditText
+        android:id="@+id/et_user_weight_modify"
+        android:inputType="numberDecimal|number"
+        android:imeOptions="actionNext"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/et_user_height_modify"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="30dp"
+        android:layout_toEndOf="@id/text_user_weight_modify"
+        android:background="@drawable/bg_input"
+        android:maxLines="1"
+        android:textSize="25sp" />
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/et_user_height_modify"
+        android:text="千克"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:layout_marginTop="30dp"
+        android:layout_toRightOf="@id/et_user_height_modify" />
+    <TextView
+        android:id="@+id/text_user_blood_pressure_modify"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_below="@id/text_user_weight_modify"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="30dp"
+        android:text="血 压:"
+        android:textSize="25sp" />
+
+    <EditText
+        android:id="@+id/et_user_blood_pressure_low_modify"
+        android:inputType="numberDecimal|number"
+        android:imeOptions="actionNext"
+        android:layout_width="125dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/et_user_weight_modify"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="30dp"
+        android:layout_toEndOf="@id/text_user_blood_pressure_modify"
+        android:background="@drawable/bg_input"
+        android:hint="低压"
+        android:gravity="center"
+        android:maxLines="1"
+        android:textSize="25sp" />
+    <EditText
+        android:id="@+id/et_user_blood_pressure_high_modify"
+        android:inputType="numberDecimal|number"
+        android:imeOptions="actionNext"
+        android:layout_width="125dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/et_user_weight_modify"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="30dp"
+        android:layout_toRightOf="@id/et_user_blood_pressure_low_modify"
+        android:background="@drawable/bg_input"
+        android:gravity="center"
+        android:hint="高压"
+        android:maxLines="1"
+        android:textSize="25sp" />
+
+    <Button
+        android:id="@+id/user_info_submit_modify"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/et_user_blood_pressure_low_modify"
+        android:layout_marginLeft="150dp"
+        android:layout_marginTop="45dp"
+        android:background="#FAFAD2"
+        android:text="保存"
+        android:textSize="25sp" />
+    <!--
+    <WebView
+        android:id="@+id/wv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+    -->
+</RelativeLayout>

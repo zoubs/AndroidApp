@@ -62,7 +62,7 @@ public class RecommendFragment extends Fragment {
         mBtnAccept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //todo 看点接受要显示什么
+                //todo 看点接受要显示什么，或许数据库标记一下？？
             }
         });
 
@@ -70,6 +70,8 @@ public class RecommendFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 //fixme 此时只预留了3组12张图片，后续可以加
+                //我的思路是预留几种食物，对应清淡，高蛋白，减肥，增重
+                //根据用户的bmi指数去推荐相应的组别(最简单的
                 recommendIndex = (recommendIndex + 1) % groupCount;
                 setFoodRecommend();
 

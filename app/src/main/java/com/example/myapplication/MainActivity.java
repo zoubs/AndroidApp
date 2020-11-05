@@ -16,6 +16,11 @@ import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 
+    /*Toast toast2 = new Toast(MainActivity.this);
+    View view = LayoutInflater.from(MainActivity.this).inflate(R.layout.toast_custom, null);
+    toast2.setView(view);
+    toast2.setGravity(Gravity.CENTER, 0, 0);
+    toast2.show();*/
     private Button mBtnLogin, mBtnSignUp;
     private EditText emailText,pwdText;
 
@@ -61,8 +66,8 @@ public class MainActivity extends AppCompatActivity {
                 String email = emailText.getText().toString();
                 String password = pwdText.getText().toString();
                 MyUsers myUsers = new MyUsers(url,user,pswd);
-                //fixme 有登录功能了记得删除
-                Intent testIntent = new Intent(MainActivity.this, HomePageActivity.class);
+                //fixme 有登录功能了记得删除, 我登不上去，为了方便测试编写，直接跳转的
+                Intent testIntent = new Intent(MainActivity.this, AdminHomePageActivity.class);
                 startActivity(testIntent);
                 Log.d("ic_user",email);
                 Log.d("pass",password);

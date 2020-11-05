@@ -18,7 +18,7 @@ public class SignUpActivity extends AppCompatActivity {
         mBtnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //todo 拉数据库进行比对
+                //todo 拉数据库进行比对，比对方法好像看到你在其他地方写的有，我没搬过来
                 /*检查账号是否存在
                  两次密码是否相同
                  */

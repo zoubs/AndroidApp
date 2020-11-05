@@ -14,7 +14,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.NumberPicker;
 import android.widget.TextView;
-
+import java.text.SimpleDateFormat;
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -24,6 +24,7 @@ import androidx.lifecycle.ViewModelProviders;
 import com.example.myapplication.R;
 
 import java.util.Calendar;
+import java.util.Date;
 
 public class RecordSleepFragment extends Fragment {
 
@@ -31,6 +32,7 @@ public class RecordSleepFragment extends Fragment {
     private Button mBtnUserSleepSubmit, mBtnUserSleepOk, mBtnUserSleepRecord;
     private EditText editTextUserSleepStart, editTextUserSleepDate, editTextUserSleepLength;
     private int sleepTimeLength;
+    private Date date;
     /*private String[] numbers = {"0.5h", "1.0h", "1.5h", "2h", "2.5h", "3h", "3.5h", "4h", "4.5h", "5h",
                                 "5.5h", "6h", "6.5h", "7h", "7.5h", "8h", "8.5h", "9h", "9.5h", "10h", "10h+"};*/
 
@@ -60,6 +62,7 @@ public class RecordSleepFragment extends Fragment {
         editTextUserSleepDate = view.findViewById(R.id.et_user_sleep_date);
         editTextUserSleepLength = view.findViewById(R.id.et_user_sleep_length);
         mBtnUserSleepRecord = view.findViewById(R.id.btn_user_sleep_data);
+
         editTextUserSleepDate.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -132,8 +135,8 @@ public class RecordSleepFragment extends Fragment {
             }
         }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
         datePickerDialog.show();
-
     }
+
     protected void showNumberPickDlg() {
         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         @SuppressLint("InflateParams") View view =  getLayoutInflater().inflate(R.layout.sleep_number_picker, null);

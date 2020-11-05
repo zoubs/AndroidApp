@@ -11,7 +11,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SignUpActivity"></activity>
+        <activity android:name=".ui.adminmodule.FeedBackManagerActivity"></activity>
+        <activity android:name=".ui.adminmodule.FoodManagerActivity" />
+        <activity android:name=".ui.adminmodule.UserManagerActivity" />
+        <activity android:name=".ui.info.InfoActivity" />
+        <activity android:name=".ui.info.LogOutActivity" />
+        <activity android:name=".ui.info.ModifyInformationActivity" />
+        <activity android:name=".ui.info.ModifyPasswordActivity" />
+        <activity android:name=".SignUpActivity" />
         <activity
             android:name=".AdminHomePageActivity"
             android:windowSoftInputMode="adjustPan|stateHidden" />

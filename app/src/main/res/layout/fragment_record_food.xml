@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#F8F8FF">
 
     <TextView
         android:id="@+id/text_slideshow"
@@ -11,6 +12,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        android:background="@drawable/record_tittle"
         android:textAlignment="center"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -18,27 +20,69 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/text_food"
+        android:id="@+id/text_food_time"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_below="@id/text_slideshow"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="40dp"
-        android:text="食物："
+        android:text="时    间："
+        android:textSize="25sp" />
+
+    <EditText
+        android:id="@+id/et_food_date"
+        android:layout_width="140dp"
+        android:layout_height="50dp"
+        android:imeOptions="actionNext"
+        android:layout_below="@id/text_slideshow"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="5dp"
+        android:layout_toRightOf="@id/text_food"
+        android:background="@drawable/bg_input"
+        android:hint="选择日期"
+        android:gravity="center"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/et_eat_time"
+        android:layout_width="95dp"
+        android:layout_height="50dp"
+        android:imeOptions="actionNext"
+        android:layout_below="@id/text_slideshow"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="20dp"
+        android:layout_toRightOf="@id/et_food_date"
+        android:background="@drawable/bg_input"
+        android:hint="早饭？"
+        android:paddingLeft="15dp"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/text_food"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_below="@id/text_food_time"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="40dp"
+        android:text="食    物："
         android:textSize="25sp" />
 
     <EditText
         android:id="@+id/et_food_input"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/text_slideshow"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="10dp"
+        android:layout_height="50dp"
+        android:imeOptions="actionNext"
+        android:layout_below="@id/et_food_date"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="20dp"
         android:layout_toRightOf="@id/text_food"
         android:background="@drawable/bg_input"
         android:drawableRight="@drawable/down_arrow"
-        android:padding="5dp"
-        android:textSize="20sp"/>
+        android:paddingLeft="15dp"
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/text_carbohydrate"
@@ -46,21 +90,23 @@
         android:layout_height="40dp"
         android:layout_below="@id/text_food"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="65dp"
-        android:text="碳水："
+        android:layout_marginTop="55dp"
+        android:text="碳    水："
         android:textSize="25sp" />
 
     <EditText
-        android:id="@+id/et_cabohydrate"
+        android:id="@+id/et_carbohydrate"
+        android:inputType="number"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
+        android:imeOptions="actionNext"
         android:layout_below="@id/et_food_input"
         android:layout_marginLeft="40dp"
-        android:layout_marginTop="45dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="20dp"
         android:layout_toRightOf="@id/text_carbohydrate"
         android:background="@drawable/bg_input"
-        android:padding="5dp"
+        android:paddingLeft="15dp"
         android:textSize="20sp" />
 
     <TextView
@@ -69,20 +115,23 @@
         android:layout_height="40dp"
         android:layout_below="@id/text_carbohydrate"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="43dp"
-        android:text="脂肪："
+        android:layout_marginTop="55dp"
+        android:text="脂    肪："
         android:textSize="25sp" />
 
     <EditText
         android:id="@+id/et_fat"
+        android:inputType="number"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_below="@id/et_cabohydrate"
+        android:layout_height="50dp"
+        android:imeOptions="actionNext"
+        android:layout_below="@id/et_carbohydrate"
         android:layout_marginLeft="40dp"
-        android:layout_marginTop="46dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginTop="45dp"
+        android:layout_marginRight="20dp"
         android:layout_toRightOf="@id/text_fat"
         android:background="@drawable/bg_input"
+        android:paddingLeft="15dp"
         android:textSize="20sp" />
 
     <TextView
@@ -91,39 +140,45 @@
         android:layout_height="40dp"
         android:layout_below="@id/text_fat"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="55dp"
         android:text="蛋白质："
         android:textSize="25sp" />
 
     <EditText
         android:id="@+id/et_pr"
+        android:inputType="number"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
+        android:imeOptions="actionNext"
         android:layout_below="@id/et_fat"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="45dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginRight="20dp"
         android:layout_toRightOf="@id/text_pr"
         android:background="@drawable/bg_input"
-        android:padding="5dp"
+        android:paddingLeft="15dp"
         android:textSize="20sp" />
+
     <Button
         android:id="@+id/btn_food_record"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/text_pr"
+        android:layout_marginLeft="55dp"
+        android:layout_marginTop="70dp"
+        android:background="#FAFAD2"
         android:text="查询饮食数据"
-        android:textSize="25sp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="100dp"
-        android:layout_below="@id/text_pr"/>
+        android:textSize="25sp" />
+
     <Button
         android:id="@+id/btn_food_submit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="保存"
-        android:textSize="25sp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="100dp"
         android:layout_below="@id/text_pr"
-        android:layout_toRightOf="@id/btn_food_record"/>
+        android:layout_marginLeft="57dp"
+        android:layout_marginTop="70dp"
+        android:layout_toRightOf="@id/btn_food_record"
+        android:background="#FAFAD2"
+        android:text="保存"
+        android:textSize="25sp" />
 </RelativeLayout>
