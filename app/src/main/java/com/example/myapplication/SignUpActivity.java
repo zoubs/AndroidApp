@@ -6,15 +6,27 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.myapplication.PO.User;
+
 public class SignUpActivity extends AppCompatActivity {
-    private Button mBtnSignUp;
+    private Button mBtnSignUp, mBtnCancel;
+    private EditText etUserEmail, etUserName, etPassword, etConfirmPassword;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
-        mBtnSignUp = findViewById(R.id.SignUp);
+        mBtnSignUp = findViewById(R.id.btn_user_sign_up_commit_add);
+        mBtnCancel = findViewById(R.id.btn_user_sign_up_cancel_add);
+
+        etUserEmail = findViewById(R.id.user_sign_up_email_add);
+        etUserName = findViewById(R.id.user_sign_up_user_name_add);
+        etPassword = findViewById(R.id.user_sign_up_password_add);
+        etConfirmPassword = findViewById(R.id.user_sign_up_confirm_password_add);
+
+
         mBtnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -27,11 +39,14 @@ public class SignUpActivity extends AppCompatActivity {
                 2.账号不合法
                 3.两次密码不同
                  */
+                User user = new User();
+                String userEmail = etUserEmail.getText().toString();
+                String userName = etUserName.getText().toString();
+                String password = etPassword.getText().toString();
+                String passwordConfirm = etConfirmPassword.getText().toString();
 
-                /*
-                需要向邮箱发验证码？
-                若需要：判断验证码
-                 */
+
+
                 Toast.makeText(SignUpActivity.this, "注册成功",Toast.LENGTH_SHORT).show();
                 //注册成功直接跳到home页面
                 Intent intent = new Intent(SignUpActivity.this, HomePageActivity.class);

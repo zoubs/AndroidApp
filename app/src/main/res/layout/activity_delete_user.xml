@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.adminmodule.usermanager.DeleteUserActivity">
+
+    <LinearLayout
+        android:id="@+id/log_up_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/lemon"
+        android:orientation="vertical"
+        android:padding="10dp">
+        <TextView
+            android:id="@+id/textView_add"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:textSize="40sp"
+            android:textAlignment="center"
+            android:text="@string/del_user" />
+        <LinearLayout
+            android:id="@+id/lll_log_up_user_name"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/log_up_circle_rectangle"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="用户名:"
+                android:textSize="20sp"/>
+
+            <EditText
+                android:id="@+id/admin_user_name_del"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:layout_weight="1"
+                android:textSize="20sp"
+                android:ems="10" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_admin_del_user"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#FFFFFF"
+                android:text="确定"
+                android:background="@drawable/log_up_button"
+                android:layout_weight="1.5" />
+
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5" />
+
+            <Button
+                android:id="@+id/btn_admin_find_user"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#FFFFFF"
+                android:background="@drawable/log_up_button"
+                android:layout_weight="1"
+                android:text="查询" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.adminmodule.foodmanager.ModifyFoodActivity">
+
+    <TextView
+        android:id="@+id/text_fm_modify_3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="修改食物"
+        android:textSize="40sp" />
+
+
+    <LinearLayout
+        android:id="@+id/Linear_fm_1"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_below="@id/text_fm_modify_3"
+        android:layout_marginTop="40dp"
+        android:orientation="horizontal"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="食物名"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/et_food_name_pre_modify"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:singleLine="true"
+            android:textSize="25sp"/>
+
+        <!--<EditText
+            android:id="@+id/et_food_name_pre_modify"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:singleLine="true"
+            android:textSize="20sp" />-->
+
+        <Button
+            android:id="@+id/btn_modify_food_find"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="查询"
+            android:textSize="22sp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/text_fm_modify_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/Linear_fm_1"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:text="修改为如下"
+        android:textSize="40sp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_below="@id/text_fm_modify_1"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/text_fm_modify_2"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginTop="40dp"
+            android:gravity="center"
+            android:text="食物名称："
+            android:textSize="25sp" />
+
+        <EditText
+            android:id="@+id/et_modify_food_name"
+            android:layout_width="140dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="40dp"
+            android:layout_toRightOf="@id/text_fm_modify_2"
+            android:background="@drawable/bg_input"
+            android:singleLine="true" />
+
+        <Button
+            android:id="@+id/btn_modify_food_submit"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="40dp"
+            android:layout_toRightOf="@id/et_modify_food_name"
+            android:text="确定"
+            android:textSize="25sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_below="@id/text_fm_modify_2"
+            android:layout_marginTop="40dp"
+            android:gravity="center"
+            android:text="食物种类："
+            android:textSize="25sp" />
+
+        <EditText
+            android:id="@+id/et_modify_food_type"
+            android:layout_width="140dp"
+            android:layout_height="50dp"
+            android:layout_below="@id/et_modify_food_name"
+            android:layout_marginTop="40dp"
+            android:layout_toRightOf="@id/text_fm_modify_2"
+            android:background="@drawable/bg_input"
+            android:singleLine="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_below="@id/et_modify_food_type"
+            android:layout_marginTop="40dp"
+            android:gravity="center"
+            android:text="卡路里： "
+            android:textSize="25sp" />
+
+        <EditText
+            android:id="@+id/et_modify_food_calorie"
+            android:layout_width="140dp"
+            android:layout_height="50dp"
+            android:layout_below="@id/et_modify_food_type"
+            android:layout_marginTop="40dp"
+            android:layout_toRightOf="@id/text_fm_modify_2"
+            android:background="@drawable/bg_input"
+            android:inputType="numberDecimal"
+            android:singleLine="true" />
+
+    </RelativeLayout>
+</RelativeLayout>

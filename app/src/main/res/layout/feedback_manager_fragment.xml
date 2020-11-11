@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.adminmodule.feedbackmanager.FeedbackManagerFragment">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="#339966"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/ed_feedback_title_reply"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/bg_padding"
+        android:hint="反馈标题"
+        android:fadeScrollbars="true"
+        android:scrollbars="vertical"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:padding="5dp"
+        android:gravity="left|top"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/et_feedback_reply"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginTop="240dp"
+        android:hint="反馈内容"
+        android:background="@drawable/bg_padding"
+        android:textColor="#000000"
+        android:gravity="left|top"
+        android:textSize="20sp"
+        android:scrollbars="vertical"
+        android:fadeScrollbars="true"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:padding="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/et_feedback_reply_context"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="430dp"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/bg_padding"
+        android:fadeScrollbars="true"
+        android:gravity="left|top"
+        android:hint="回复内容"
+        android:padding="5dp"
+        android:scrollbars="vertical"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_feedback_reply"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="已解决"
+        android:textSize="20sp"
+        android:background="#FAFAD2"
+        android:layout_below="@id/et_feedback_describe"
+        android:layout_marginTop="600dp"
+        android:layout_marginLeft="270dp"/>
+
+<!--    <Button-->
+<!--        android:id="@+id/btn_feedback_next"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@id/et_feedback_describe"-->
+<!--        android:layout_marginLeft="50dp"-->
+<!--        android:layout_marginTop="650dp"-->
+<!--        android:layout_toRightOf="@id/btn_feedback_record"-->
+<!--        android:background="#FAFAD2"-->
+<!--        android:text="下一条"-->
+<!--        android:textSize="20sp" />-->
+</FrameLayout>

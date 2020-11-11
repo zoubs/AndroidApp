@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     toast2.show();*/
     private Button mBtnLogin, mBtnSignUp;
     private EditText emailText,pwdText;
-
+    //public static String userName;
     //database connect
     private String url = "jdbc:mysql://39.101.211.144:3306/android_db?useSSL=false&allowPublicKeyRetrieval=true";
     private String user = "android";
@@ -66,9 +66,6 @@ public class MainActivity extends AppCompatActivity {
                 String email = emailText.getText().toString();
                 String password = pwdText.getText().toString();
                 MyUsers myUsers = new MyUsers(url,user,pswd);
-                //fixme 有登录功能了记得删除, 我登不上去，为了方便测试编写，直接跳转的
-                Intent testIntent = new Intent(MainActivity.this, AdminHomePageActivity.class);
-                startActivity(testIntent);
                 Log.d("ic_user",email);
                 Log.d("pass",password);
                 //复杂
@@ -93,6 +90,10 @@ public class MainActivity extends AppCompatActivity {
                         intent.setClass(MainActivity.this,AdminHomePageActivity.class);
                     }
                     intent.putExtras(bundle);
+                    GlobalInfo globalInfo = (GlobalInfo) getApplication();
+                    globalInfo.setUserName(email);
+                    globalInfo.setUserPassword(password);
+                    //fixme 缺一个用户id
                     ToastUtil.showMsg(getApplicationContext(),"登录成功！");
                     startActivity(intent);
                 }

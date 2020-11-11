@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -96,7 +97,10 @@ public class RecordSleepFragment extends Fragment {
         mBtnUserSleepRecord.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 //todo 睡眠记录查询
+                Intent intent = new Intent(getActivity(), FindSleepActivity.class);
+                startActivity(intent);
             }
         });
         /*mBtnUserSleepOk = view.findViewById(R.id.btn_sleep_ok);
@@ -152,12 +156,6 @@ public class RecordSleepFragment extends Fragment {
                 return String.valueOf((float) value / 2);
             }
         });
-        /*numberPicker.setOnScrollListener(new NumberPicker.OnScrollListener() {
-            @Override
-            public void onScrollStateChange(NumberPicker arg0, int arg1) {
-                Log.e("onScrollStateChange", "onScrollStateChange");
-            }
-        });*/
         builder.setView(view);
         builder.setTitle("设置睡眠时间");
         builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {

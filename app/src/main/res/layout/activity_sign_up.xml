@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,84 +8,153 @@
     tools:context=".SignUpActivity">
 
     <LinearLayout
-        android:layout_width="80dp"
-        android:layout_height="match_parent"
-        android:gravity="right"
-        android:orientation="vertical"
-        android:paddingRight="10dp">
-
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="100dp"
-            android:src="@drawable/username" />
-
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="20dp"
-            android:src="@drawable/password" />
-
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="20dp"
-            android:src="@drawable/password" />
-
-    </LinearLayout>
-
-    <LinearLayout
+        android:id="@+id/sign_up_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        >
+        android:background="@drawable/lemon"
+        android:padding="10dp">
+
         <TextView
+            android:id="@+id/textView_sign_up_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="欢迎注册"
-            android:textSize="25sp"
-            android:textColor="#3300FF"
-            android:paddingLeft="65dp"/>
-        <EditText
-            android:id="@+id/signup_user_email"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="50dp"
-            android:hint="@string/loginEmail"
-            android:drawablePadding="5dp"
-            android:textSize="25dp"
-            android:inputType="textEmailAddress"/>
-        <EditText
-            android:id="@+id/signup_user_pswd"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="20dp"
-            android:hint="@string/loginPwd"
-            android:drawablePadding="5dp"
-            android:textSize="25dp"
-            android:inputType="textPassword"/>
-        <EditText
-            android:id="@+id/signup_user_pswd_confirm"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="20dp"
-            android:hint="确认密码"
-            android:drawablePadding="5dp"
-            android:textSize="25dp"
-            android:inputType="textPassword"/>
+            android:layout_marginTop="100dp"
+            android:textSize="40sp"
+            android:textAlignment="center"
+            android:text="欢迎注册" />
 
-        <Button
-            android:id="@+id/SignUp"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:layout_marginLeft="65dp"
+        <LinearLayout
+            android:id="@+id/ll_user_sign_up_email"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
             android:layout_marginTop="40dp"
-            android:drawableLeft="@drawable/signup"
-            android:text="注册"
-            android:background="@drawable/bg_button"
-            android:textSize="25sp">
+            android:background="@drawable/log_up_circle_rectangle"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="注册邮箱"
+                android:textSize="20sp"/>
 
-        </Button>
+            <EditText
+                android:id="@+id/user_sign_up_email_add"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:textSize="20sp"
+                android:inputType="textEmailAddress" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_sign_up_user_name"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/log_up_circle_rectangle"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="用户名称"
+                android:textSize="20sp"/>
+
+            <EditText
+                android:id="@+id/user_sign_up_user_name_add"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:layout_weight="1"
+                android:textSize="20sp"
+                android:ems="10" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_sign_up_password"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:background="@drawable/log_up_circle_rectangle"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="输入密码"
+                android:textSize="20sp"/>
+
+            <EditText
+                android:id="@+id/user_sign_up_password_add"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:textSize="20sp"
+                android:inputType="textPassword" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_user_sign_up_confirm_password"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/log_up_circle_rectangle"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="确认密码"
+                android:textSize="20sp"/>
+
+            <EditText
+                android:id="@+id/user_sign_up_confirm_password_add"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:textSize="20sp"
+                android:inputType="textPassword" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_user_sign_up_commit_add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#FFFFFF"
+                android:text="确定"
+                android:background="@drawable/log_up_button"
+                android:layout_weight="1.5" />
+
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5" />
+
+            <Button
+                android:id="@+id/btn_user_sign_up_cancel_add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#FFFFFF"
+                android:background="@drawable/log_up_button"
+                android:layout_weight="1"
+                android:text="取消" />
+        </LinearLayout>
+
     </LinearLayout>
-</LinearLayout>
+</RelativeLayout>

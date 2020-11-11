@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.adminmodule.foodmanager.FoodManagerFragment"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="115dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingRight="15dp"
+        android:paddingTop="50dp"
+        >
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="40dp"
+            android:src="@drawable/modify"
+            android:layout_gravity="right"/>
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="40dp"
+            android:src="@drawable/add"
+            android:layout_gravity="right"/>
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="40dp"
+            android:src="@drawable/delete"
+            android:layout_gravity="right"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingLeft="10dp"
+        android:layout_marginTop="50dp">
+
+        <Button
+            android:id="@+id/btn_modify_food"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/bg_click"
+            android:text="修改食物"
+            android:textSize="25sp" />
+
+        <Button
+            android:id="@+id/btn_add_food"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/bg_click"
+            android:text="增加食物"
+            android:textSize="25sp" />
+
+        <Button
+            android:id="@+id/btn_delete_food"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/bg_click"
+            android:text="删除食物"
+            android:textSize="25sp" />
+    </LinearLayout>
+
+</LinearLayout>

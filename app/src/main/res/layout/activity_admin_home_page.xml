@@ -5,14 +5,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".AdminHomePageActivity">
+    tools:context=".AdminHomePageActivity"
+    >
 
     <FrameLayout
         android:id="@+id/fl_admin_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/bottom_navigation_bar"
-        android:background="#000000" />
+        android:background="@drawable/lemon"
+        />
+
+<!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="用户管理"-->
+<!--        android:textSize="40sp"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:layout_marginTop="70dp"/>-->
 
     <com.ashokvarma.bottomnavigation.BottomNavigationBar
         android:id="@+id/bottom_navigation_bar"
@@ -25,7 +35,7 @@
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/admin_fab"
+        android:id="@+id/admin_fab_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/fl_admin_container"
@@ -33,6 +43,17 @@
         android:layout_margin="10dp"
         android:backgroundTint="@color/colorPrimary"
         android:src="@mipmap/ic_add_4"
+        app:elevation="2dp"
+        app:pressedTranslationZ="8dp" />
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/admin_fab_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/fl_admin_container"
+        android:layout_alignParentRight="false"
+        android:layout_margin="10dp"
+        android:backgroundTint="@color/colorPrimary"
+        android:src="@mipmap/ic_delete"
         app:elevation="2dp"
         app:pressedTranslationZ="8dp" />
 

@@ -36,7 +36,7 @@ public class HomePageActivity extends AppCompatActivity {
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
-
+        //String userName = MainActivity.userName;
         //获取前页数据
         Bundle preBundle = getIntent().getExtras();
         View headerView = navigationView.getHeaderView(0);
@@ -46,8 +46,7 @@ public class HomePageActivity extends AppCompatActivity {
         //Log.d("test",username.getText().toString());
         //设置任务栏用户名（暂用邮箱替代）
 
-        //fixme 取消注释
-        //userName.setText(preBundle.getString("email"));
+        userName.setText(preBundle.getString("email"));
 
 
 
@@ -63,30 +62,7 @@ public class HomePageActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-        //todo 检查根据点击进行界面跳转是否正确
-        /*
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.nav_home: //主页
-                        break;
-                    case R.id.nav_recommend:  //食物推荐
-                        break;
-                    case R.id.nav_gallery: //食物查询
-                        break;
-                    case R.id.nav_slideshow:  //记录饮食
-                        break;
-                    case R.id.nav_tools: //记录睡眠
-                        break;
-                    case R.id.nav_share: //个人信息
-                        break;
-                    case R.id.nav_send: //用户反馈
-                        break;
-                }
-                return true;
-            }
-        });*/
+
 
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.

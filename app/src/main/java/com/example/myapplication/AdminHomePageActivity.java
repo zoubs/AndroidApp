@@ -10,11 +10,14 @@ import android.widget.Toast;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
-import com.example.myapplication.ui.adminmodule.FoodManagerActivity;
+import com.example.myapplication.ui.adminmodule.feedbackmanager.FeedbackManagerFragment;
+import com.example.myapplication.ui.adminmodule.foodmanager.FoodManagerFragment;
+import com.example.myapplication.ui.adminmodule.usermanager.AddUserActivity;
+import com.example.myapplication.ui.adminmodule.usermanager.DeleteUserActivity;
+import com.example.myapplication.ui.adminmodule.usermanager.UserManagerFragment;
 import com.example.myapplication.ui.find.FindFragment;
 import com.example.myapplication.ui.info.InfoFragment;
 import com.example.myapplication.ui.logup.LogUpFragment;
-import com.example.myapplication.ui.user.UserManageFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class AdminHomePageActivity extends AppCompatActivity {
@@ -22,17 +25,21 @@ public class AdminHomePageActivity extends AppCompatActivity {
     private BottomNavigationBar bottomNavigationBar;
     private FindFragment findFragment;
     private InfoFragment infoFragment;
-    private UserManageFragment userManageFragment;
-    private FloatingActionButton fab;
+    private UserManagerFragment userManagerFragment;
+    private FoodManagerFragment foodManagerFragment;
+    private FeedbackManagerFragment feedbackManagerFragment;
+    private FloatingActionButton fabAdd;
+    private FloatingActionButton fabDel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_home_page);
 
-        fab = findViewById(R.id.admin_fab);
-        fab.hide();
-
+        fabAdd = findViewById(R.id.admin_fab_add);
+        fabDel = findViewById(R.id.admin_fab_delete);
+        fabAdd.hide();
+        fabDel.hide();
         bottomNavigationBar = findViewById(R.id.bottom_navigation_bar);
         bottomNavigationBar.setMode(BottomNavigationBar.MODE_SHIFTING);
         // TODO 设置背景色样式
@@ -48,52 +55,63 @@ public class AdminHomePageActivity extends AppCompatActivity {
         //FIXME 页面上点击+号后，再次点击应用会闪退
         findFragment = new FindFragment();
         infoFragment = new InfoFragment();
-        userManageFragment = new UserManageFragment();
-        getSupportFragmentManager().beginTransaction().add(R.id.fl_admin_container,findFragment).commitAllowingStateLoss();
+        userManagerFragment = new UserManagerFragment();
+        foodManagerFragment = new FoodManagerFragment();
+        feedbackManagerFragment = new FeedbackManagerFragment();
+        //getSupportFragmentManager().beginTransaction().add(R.id.fl_admin_container,findFragment).commitAllowingStateLoss();
         //设置底部选择菜单点击状态
         bottomNavigationBar.setTabSelectedListener(new BottomNavigationBar.OnTabSelectedListener(){
             @SuppressLint("ResourceAsColor")
             @Override
             public void onTabSelected(int position) {
                 switch (position) {
-                    case 0:
+                    case 0:  //首页
+                        fabAdd.hide();
+                        fabDel.hide();
                         getSupportFragmentManager().beginTransaction().replace(R.id.fl_admin_container,findFragment).addToBackStack(null).commitAllowingStateLoss();
-                        fab.hide();
+
                         break;
-                    case 1:
-                        Intent intent = new Intent(AdminHomePageActivity.this, FoodManagerActivity.class);
-                        startActivity(intent);
-                        fab.show();
-                        fab.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                Toast.makeText(AdminHomePageActivity.this, "食物", Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                    case 1:    //食物管理
+                        fabDel.hide();
+                        fabAdd.hide();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fl_admin_container,foodManagerFragment, "foodManageFragment").commitAllowingStateLoss();
                         break;
-                    case 2:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.fl_admin_container,userManageFragment, "userManageFragment").commitAllowingStateLoss();
-                        fab.show();
+                    case 2:  //用户管理
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fl_admin_container, userManagerFragment, "userManageFragment").commitAllowingStateLoss();
+                        fabAdd.show();
+                        fabDel.show();
                         final LogUpFragment logUpFragment = new LogUpFragment(true);
-                        fab.setOnClickListener(new View.OnClickListener() {
+                        fabAdd.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
                                 Toast.makeText(AdminHomePageActivity.this, "用户", Toast.LENGTH_SHORT).show();
-                                getSupportFragmentManager().beginTransaction().add(R.id.fl_admin_container,logUpFragment,"logUpFragment").addToBackStack(null).commitAllowingStateLoss();
-                                fab.hide();
+                                //getSupportFragmentManager().beginTransaction().add(R.id.fl_admin_container,logUpFragment,"logUpFragment").addToBackStack(null).commitAllowingStateLoss();
+                                Intent intent1 = new Intent(AdminHomePageActivity.this, AddUserActivity.class);
+                                startActivity(intent1);
+                            }
+                        });
+                        fabDel.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Toast.makeText(AdminHomePageActivity.this, "用户", Toast.LENGTH_SHORT).show();
+                                //getSupportFragmentManager().beginTransaction().add(R.id.fl_admin_container,logUpFragment,"logUpFragment").addToBackStack(null).commitAllowingStateLoss();
+                                Intent intent1 = new Intent(AdminHomePageActivity.this, DeleteUserActivity.class);
+                                startActivity(intent1);
+
                             }
                         });
                         //fab.show();
 
                         break;
                     case 3:
-                        Intent intent2 = new Intent(AdminHomePageActivity.this, FoodManagerActivity.class);
-                        startActivity(intent2);
-                        fab.hide();
+                        fabAdd.hide();
+                        fabDel.hide();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fl_admin_container,feedbackManagerFragment).commitAllowingStateLoss();
                         break;
                     default:
+                        fabAdd.hide();
+                        fabDel.hide();
                         getSupportFragmentManager().beginTransaction().replace(R.id.fl_admin_container,findFragment).commitAllowingStateLoss();
-                        fab.hide();
                         break;
                 }
             }
@@ -102,8 +120,9 @@ public class AdminHomePageActivity extends AppCompatActivity {
             }
             @Override
             public void onTabReselected(int position) {
-                if(position == 1 || position == 2) {
-                    fab.show();
+                if( position == 2) {
+                    fabAdd.show();
+                    fabDel.show();
                 }
             }
         });

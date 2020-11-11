@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="8dp"
+    tools:context=".ui.recordfood.FindDietActivity">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/text_sleep_date"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="40dp"
+            android:gravity="center"
+            android:text="日期"
+            android:textSize="25sp" />
+
+        <EditText
+            android:id="@+id/et_record_diet_date"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="40dp"
+            android:layout_toRightOf="@id/text_sleep_date"
+            android:background="@drawable/bg_input" />
+
+        <Button
+            android:id="@+id/btn_record_diet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="40dp"
+            android:layout_toRightOf="@id/et_record_diet_date"
+            android:text="点击查询"
+            android:textSize="25sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginTop="30dp"
+        android:paddingLeft="20dp">
+
+        <LinearLayout
+            android:layout_width="120dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/et_diet_record_type1"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content" />
+
+            <EditText
+                android:id="@+id/et_diet_record_type2"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"/>
+
+            <EditText
+                android:id="@+id/et_diet_record_type3"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="120dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/et_diet_record_food_name1"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content" />
+
+            <EditText
+                android:id="@+id/et_diet_record_food_name2"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"/>
+
+            <EditText
+                android:id="@+id/et_diet_record_food_name3"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="120dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/et_diet_record_food_number1"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"/>
+
+            <EditText
+                android:id="@+id/et_diet_record_food_number2"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"/>
+
+            <EditText
+                android:id="@+id/et_diet_record_food_number3"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"/>
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>

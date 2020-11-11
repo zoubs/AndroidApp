@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.LayoutInflater;
@@ -24,20 +25,20 @@ import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.example.myapplication.GlobalInfo;
+import com.example.myapplication.PO.Diet;
 import com.example.myapplication.R;
 
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
 import lombok.SneakyThrows;
 
 public class RecordFoodFragment extends Fragment {
-
-    private EditText editTextFoodName, editTextCarbohydrate, editTextFat, editTextPr, editTextDietDate, editTextDietTime;
+    private EditText editTextFoodName, editTextCalorie, editTextDietDate, editTextDietTime;
     private Button mBtnFoodRecord, mBtnFoodSubmit;
-    private UserDiet userDietInFormation;
     private String[] foodList = {"米饭", "猪肉", "牛肉","蔬菜", "牛奶"};//要填充的数据
     private String[] typeList = {"早饭", "午饭", "晚饭"};
     public RecordFoodFragment() {
@@ -59,9 +60,7 @@ public class RecordFoodFragment extends Fragment {
         editTextDietDate = view.findViewById(R.id.et_food_date);
         editTextDietTime = view.findViewById(R.id.et_eat_time);
         editTextFoodName = view.findViewById(R.id.et_food_input);
-        editTextCarbohydrate = view.findViewById(R.id.et_carbohydrate);
-        editTextFat = view.findViewById(R.id.et_fat);
-        editTextPr = view.findViewById(R.id.et_pr);
+        editTextCalorie = view.findViewById(R.id.et_calorie);
         mBtnFoodRecord = view.findViewById(R.id.btn_food_record);
         mBtnFoodSubmit = view.findViewById(R.id.btn_food_submit);
 
@@ -69,7 +68,7 @@ public class RecordFoodFragment extends Fragment {
         editTextFoodName.setInputType(InputType.TYPE_NULL);
         editTextDietDate.setInputType(InputType.TYPE_NULL);
         editTextDietTime.setInputType(InputType.TYPE_NULL);
-
+        //editTextDietTime.setVisibility(View.INVISIBLE);
         editTextFoodName.setOnTouchListener(new View.OnTouchListener() {
             @SuppressLint("ClickableViewAccessibility")
             @Override
@@ -140,23 +139,33 @@ public class RecordFoodFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 //todo 查询用户饮食记录并显示
+                Intent intent = new Intent(getActivity(), FindDietActivity.class);
+                startActivity(intent);
             }
         });
-    }
-    private void submitDietData() throws ParseException {
-        SimpleDateFormat format = new SimpleDateFormat("yy-MM-dd");
-        String dietDate = editTextDietDate.getText().toString();
-        String dietTime = editTextDietTime.getText().toString();
-        String carbohydrate = editTextCarbohydrate.getText().toString();
-        String fat = editTextFat.getText().toString();
-        String protein = editTextPr.getText().toString();
 
-        if (!dietDate.isEmpty() && !dietTime.isEmpty() && !carbohydrate.isEmpty() && !fat.isEmpty() && !protein.isEmpty()) {
-            userDietInFormation.setDate(format.parse(dietDate));
-            userDietInFormation.setType(dietTime);
-            userDietInFormation.setCarbohydrate(carbohydrate);
-            userDietInFormation.setFat(fat);
-            userDietInFormation.setProtein(protein);
+    }
+
+    private void submitDietData() throws ParseException {
+        SimpleDateFormat format = new SimpleDateFormat("yy-MM-dd hh:mm:ss");
+        Diet dietData = new Diet();
+        String type = editTextDietTime.getText().toString();
+        String dietDate = editTextDietDate.getText().toString();
+        //String dietTime = editTextDietTime.getText().toString();
+        String calorie = editTextCalorie.getText().toString();
+
+        if (!dietDate.isEmpty() && !calorie.isEmpty() && !type.isEmpty()) {
+            if (type.equals("早饭")) {
+                dietDate += " 08:00:00";
+            } else if (type.equals("午饭")) {
+                dietDate += " 12:00:00";
+            } else {
+                dietDate += " 18:00:00";
+            }
+            dietData.setMealTime(Timestamp.valueOf(dietDate));
+            dietData.setFoodNumber(Double.parseDouble(calorie));
+            GlobalInfo globalInfo = (GlobalInfo) getActivity().getApplication();
+            dietData.setUserID(globalInfo.getUserId());
             //获得用户id,foodId数据库自动生成dietId
 
             //Toast.makeText(getActivity(), "提交成功", Toast.LENGTH_LONG).show();
@@ -165,7 +174,6 @@ public class RecordFoodFragment extends Fragment {
         }
     }
     private void showListWindow(final String []list, final EditText editText) {
-        //todo 目前没有显示图片，后续可以根据用户的选择，增加对应的食物图片
         final ListPopupWindow listPopupWindow;
         listPopupWindow = new ListPopupWindow(getActivity());
         listPopupWindow.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, list));//用android内置布局，或设计自己的样式

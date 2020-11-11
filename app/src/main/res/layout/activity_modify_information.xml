@@ -30,70 +30,33 @@
         android:textSize="25sp" />
 
     <TextView
-        android:id="@+id/text_user_birthday_modify"
+        android:id="@+id/text_user_age_modify"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_below="@id/text_nickname_modify"
         android:layout_marginStart="10dp"
         android:layout_marginTop="30dp"
-        android:text="生 日:"
+        android:text="年 龄:"
         android:textSize="25sp" />
 
     <EditText
-        android:id="@+id/et_user_birthday_modify"
+        android:id="@+id/et_user_age_modify"
         android:layout_width="250dp"
         android:layout_height="50dp"
         android:layout_below="@id/et_user_nickname_modify"
         android:layout_marginLeft="40dp"
         android:layout_marginTop="30dp"
-        android:layout_toEndOf="@id/text_user_birthday_modify"
+        android:layout_toEndOf="@id/text_user_age_modify"
         android:background="@drawable/bg_input"
         android:maxLines="1"
         android:textSize="25sp" />
 
-    <TextView
-        android:id="@+id/text_user_sex_modify"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_below="@id/text_user_birthday_modify"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="30dp"
-        android:text="性 别:"
-        android:textSize="25sp" />
-
-    <RadioGroup
-        android:id="@+id/user_sex_group_modify"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_below="@id/et_user_birthday_modify"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="30dp"
-        android:layout_toRightOf="@id/text_user_sex_modify"
-        android:orientation="horizontal">
-
-        <RadioButton
-            android:id="@+id/rb_man"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:checked="true"
-            android:gravity="center"
-            android:text="男"
-            android:textSize="20sp" />
-
-        <RadioButton
-            android:id="@+id/rb_woman"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:layout_marginStart="10dp"
-            android:text="女"
-            android:textSize="20sp" />
-    </RadioGroup>
 
     <TextView
         android:id="@+id/text_user_height_modify"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:layout_below="@id/text_user_sex_modify"
+        android:layout_below="@id/text_user_age_modify"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="30dp"
         android:text="身 高:"
@@ -105,7 +68,7 @@
         android:imeOptions="actionNext"
         android:layout_width="150dp"
         android:layout_height="50dp"
-        android:layout_below="@id/user_sex_group_modify"
+        android:layout_below="@id/text_user_age_modify"
         android:layout_marginLeft="40dp"
         android:layout_marginTop="30dp"
         android:layout_toEndOf="@id/text_user_height_modify"
@@ -116,7 +79,7 @@
     <TextView
         android:layout_width="100dp"
         android:layout_height="50dp"
-        android:layout_below="@id/user_sex_group_modify"
+        android:layout_below="@id/text_user_age_modify"
         android:text="厘米"
         android:textSize="25sp"
         android:gravity="center"
@@ -166,7 +129,7 @@
         android:textSize="25sp" />
 
     <EditText
-        android:id="@+id/et_user_blood_pressure_low_modify"
+        android:id="@+id/et_user_blood_pressure_modify"
         android:inputType="numberDecimal|number"
         android:imeOptions="actionNext"
         android:layout_width="125dp"
@@ -177,23 +140,8 @@
         android:layout_marginTop="30dp"
         android:layout_toEndOf="@id/text_user_blood_pressure_modify"
         android:background="@drawable/bg_input"
-        android:hint="低压"
+        android:hint="血压"
         android:gravity="center"
-        android:maxLines="1"
-        android:textSize="25sp" />
-    <EditText
-        android:id="@+id/et_user_blood_pressure_high_modify"
-        android:inputType="numberDecimal|number"
-        android:imeOptions="actionNext"
-        android:layout_width="125dp"
-        android:layout_height="50dp"
-        android:layout_below="@id/et_user_weight_modify"
-        android:layout_marginLeft="2dp"
-        android:layout_marginTop="30dp"
-        android:layout_toRightOf="@id/et_user_blood_pressure_low_modify"
-        android:background="@drawable/bg_input"
-        android:gravity="center"
-        android:hint="高压"
         android:maxLines="1"
         android:textSize="25sp" />
 
@@ -201,7 +149,7 @@
         android:id="@+id/user_info_submit_modify"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/et_user_blood_pressure_low_modify"
+        android:layout_below="@id/et_user_blood_pressure_modify"
         android:layout_marginLeft="150dp"
         android:layout_marginTop="45dp"
         android:background="#FAFAD2"
