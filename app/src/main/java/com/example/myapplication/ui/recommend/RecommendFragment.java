@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,74 +15,106 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.example.myapplication.DaoImpl.UserDaoImpl;
+import com.example.myapplication.GlobalInfo;
+import com.example.myapplication.PO.OrdinaryUserData;
 import com.example.myapplication.R;
-
-import java.util.Map;
+import com.example.myapplication.VO.OrdinaryUser;
 
 public class RecommendFragment extends Fragment {
+    private int type, index;
+    private GlobalInfo globalInfo;
+    private double bmi;
+    private ImageView imageViewRecommend;
+    private Button mBtnNextGroup;
 
-    private RecommendViewModel recommendViewModel;
-    private ImageView imageViewLeftTop, imageViewRightTop, imageViewLeftDown, imageViewRightDown;
-    private Button mBtnAccept, mBtnNextGroup;
+    private int[] foodHealthy =
+            {R.drawable.recommend_hea1, R.drawable.recommend_hea2, R.drawable.recommend_hea3,
+                    R.drawable.recommend_hea4, R.drawable.recommend_hea5};
+    private int[] foodFat = {R.drawable.recommend_fat1, R.drawable.recommend_fat2, R.drawable.recommend_fat3, R.drawable.recommend_fat4, R.drawable.recommend_fat5};
+    private int[] foodMuscle = {R.drawable.recommcond_nor1, R.drawable.recommend_nor2, R.drawable.recommend_nor3};
+    private int[] foodThin = {R.drawable.recommend_thin, R.drawable.recommend_thin2, R.drawable.recommend_thin3, R.drawable.recommend_thin4, R.drawable.recommeng_thin5};
+    private int fatCount = 5, muscle = 3, thinCount = 5, healthyCount = 5;
 
-    private int[][] foodGroup = {
-            {R.drawable.meat_recommend, R.drawable.rice_recommend, R.drawable.milk_recommend, R.drawable.orange_recommend},
-            {R.drawable.egg_recommend, R.drawable.bread_recommend, R.drawable.vegetable_recommend, R.drawable.milk_recommend},
-            {R.drawable.crisps, R.drawable.vegetable_dog, R.drawable.lemon_panda, R.drawable.vita_panda}
-    };
-    private int recommendIndex, groupCount = 3;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        recommendViewModel =
-                ViewModelProviders.of(this).get(RecommendViewModel.class);
         View root = inflater.inflate(R.layout.fragment_recommend, container, false);
-        final TextView textView = root.findViewById(R.id.text_recommend);
-        recommendViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
         return root;
     }
+
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        imageViewLeftTop = view.findViewById(R.id.recommend_image1);
-        imageViewRightTop = view.findViewById(R.id.recommend_image2);
-        imageViewLeftDown = view.findViewById(R.id.recommend_image3);
-        imageViewRightDown = view.findViewById(R.id.recommend_image4);
-        mBtnAccept = view.findViewById(R.id.btn_accept_recommend);
+        imageViewRecommend = view.findViewById(R.id.recommend_image1);
         mBtnNextGroup = view.findViewById(R.id.btn_next_group);
+        mBtnNextGroup.setVisibility(View.INVISIBLE);
+        globalInfo = (GlobalInfo) getActivity().getApplication();
 
-
-
-        setFoodRecommend();
-
-        mBtnAccept.setOnClickListener(new View.OnClickListener() {
+        imageViewRecommend.setImageResource(R.drawable.pengyuyan);
+        Thread thread;
+        final boolean[] isExist = new boolean[1];
+        thread = new Thread(new Runnable() {
             @Override
-            public void onClick(View view) {
-                //todo 看点接受要显示什么，或许数据库标记一下？？
+            public void run() {
+                UserDaoImpl userDao = new UserDaoImpl();
+                OrdinaryUser user = userDao.findOrdinaryByID(globalInfo.getNowUserId());
+                if (user != null) {
+                    isExist[0] = true;
+                    OrdinaryUserData userDetail = user.getUserData();
+
+                    double weight = userDetail.getUserWeight();
+                    double height = userDetail.getUserSature();
+                    bmi = weight * 10000 / (height * height);
+
+                } else {
+                    isExist[0] = false;
+                }
             }
         });
-
-        mBtnNextGroup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //fixme 此时只预留了3组12张图片，后续可以加
-                //我的思路是预留几种食物，对应清淡，高蛋白，减肥，增重
-                //根据用户的bmi指数去推荐相应的组别(最简单的
-                recommendIndex = (recommendIndex + 1) % groupCount;
-                setFoodRecommend();
-
+        thread.start();
+        try {
+            thread.join();
+        } catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        if (isExist[0]) {  //进行推荐
+            mBtnNextGroup.setVisibility(View.VISIBLE);
+            if (bmi >= 28) {  //超重
+                type = 4;
+            } else if (bmi < 28 && bmi > 24) {
+                //肥胖
+                type = 3;
+            } else if (bmi >= 18.5 && bmi <= 24) {
+                //正常
+                type = 2;
+            } else if (bmi < 18.5) {
+                //偏瘦
+                type = 1;
             }
-        });
-    }
-    private void setFoodRecommend(){
-        imageViewLeftTop.setImageResource(foodGroup[recommendIndex][0]);
-        imageViewRightTop.setImageResource(foodGroup[recommendIndex][1]);
-        imageViewLeftDown.setImageResource(foodGroup[recommendIndex][2]);
-        imageViewRightDown.setImageResource(foodGroup[recommendIndex][3]);
+
+            index = 0;
+            mBtnNextGroup.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    if (type == 1) {
+                        imageViewRecommend.setImageResource(foodThin[index]);
+                        index = (index+1) %thinCount;
+                    } else if(type == 2) {
+                        imageViewRecommend.setImageResource(foodHealthy[index]);
+                        index = (index+1) % healthyCount;
+                    } else if (type == 3) {
+                        imageViewRecommend.setImageResource(foodMuscle[index]);
+                        index = (index + 1) % muscle;
+                    } else if (type == 4) {
+                        imageViewRecommend.setImageResource(foodFat[index]);
+                        index = (index+1) % fatCount;
+                    }
+                }
+            });
+        } else {
+            Toast.makeText(getActivity(), "请先完善信息，再来探索这里哦！", Toast.LENGTH_LONG).show();
+        }
     }
 }

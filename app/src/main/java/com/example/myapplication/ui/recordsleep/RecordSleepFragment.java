@@ -15,6 +15,9 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.NumberPicker;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
@@ -22,6 +25,9 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.example.myapplication.DaoImpl.SleepStateDaoImpl;
+import com.example.myapplication.GlobalInfo;
+import com.example.myapplication.PO.SleepState;
 import com.example.myapplication.R;
 
 import java.util.Calendar;
@@ -31,8 +37,9 @@ public class RecordSleepFragment extends Fragment {
 
     private RecordSleepViewModel recordSleepViewModel;
     private Button mBtnUserSleepSubmit, mBtnUserSleepOk, mBtnUserSleepRecord;
-    private EditText editTextUserSleepStart, editTextUserSleepDate, editTextUserSleepLength;
+    private EditText editTextUserSleepDate, editTextUserSleepLength;
     private int sleepTimeLength;
+    private GlobalInfo globalInfo;
     private Date date;
     /*private String[] numbers = {"0.5h", "1.0h", "1.5h", "2h", "2.5h", "3h", "3.5h", "4h", "4.5h", "5h",
                                 "5.5h", "6h", "6.5h", "7h", "7.5h", "8h", "8.5h", "9h", "9.5h", "10h", "10h+"};*/
@@ -59,6 +66,7 @@ public class RecordSleepFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        globalInfo = (GlobalInfo)getActivity().getApplication();
         mBtnUserSleepSubmit = view.findViewById(R.id.btn_sleep_submit);
         editTextUserSleepDate = view.findViewById(R.id.et_user_sleep_date);
         editTextUserSleepLength = view.findViewById(R.id.et_user_sleep_length);
@@ -114,8 +122,8 @@ public class RecordSleepFragment extends Fragment {
         builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                //todo 数据库提交数据, 提交成功弹出提示
                 dialogInterface.cancel();
+                submitSleepData();
             }
         });
         builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
@@ -125,6 +133,45 @@ public class RecordSleepFragment extends Fragment {
             }
         });
         builder.create().show();
+    }
+
+    public void submitSleepData() {
+        String date = editTextUserSleepDate.getText().toString();
+        String length = editTextUserSleepLength.getText().toString();
+        final SleepStateDaoImpl sleepStateDao = new SleepStateDaoImpl();
+        final SleepState sleepState = new SleepState();
+        final boolean[] isSuccess = new boolean[1];
+        if(!date.isEmpty() && !length.isEmpty()){
+            double len = Double.parseDouble(length)*60;
+
+            long dur = Double.valueOf(len).longValue();
+            date += " 00:00:00";
+            sleepState.setUserID(globalInfo.getNowUserId());
+            sleepState.setSleepDate(Timestamp.valueOf(date));
+            sleepState.setSleepDuration(dur);
+
+            Thread myThread;
+            myThread = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    isSuccess[0] = sleepStateDao.insert(sleepState);
+                }
+            });
+            myThread.start();
+            try {
+                myThread.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            if (isSuccess[0]) {
+                Toast.makeText(getActivity(), "提交成功", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getActivity(), "提交失败", Toast.LENGTH_SHORT).show();
+            }
+
+        } else {
+            Toast.makeText(getActivity(), "请将表单填写完整", Toast.LENGTH_SHORT).show();
+        }
     }
 
     protected void showDatePickDlg() {

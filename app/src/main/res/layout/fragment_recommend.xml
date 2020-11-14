@@ -13,58 +13,22 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:textAlignment="center"
-        android:textSize="20sp"
+        android:text="食物推荐"
+        android:background="#FFFACD"
+        android:backgroundTint="#FFFACD"
+        android:textSize="45sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/recommend_image1"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="350dp"
+        android:layout_height="480dp"
         android:layout_below="@id/text_recommend"
-        android:layout_marginLeft="70dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="40sp"
+        android:layout_centerHorizontal="true"
         android:scaleType="fitXY" />
-
-    <ImageView
-        android:id="@+id/recommend_image2"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_below="@id/text_recommend"
-        android:layout_marginLeft="65dp"
-        android:layout_marginTop="100dp"
-        android:layout_toRightOf="@id/recommend_image1"
-        android:scaleType="fitXY" />
-
-    <ImageView
-        android:id="@+id/recommend_image3"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_below="@id/recommend_image1"
-        android:layout_marginLeft="70dp"
-        android:layout_marginTop="50dp"
-        android:scaleType="fitXY" />
-
-    <ImageView
-        android:id="@+id/recommend_image4"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_below="@id/recommend_image2"
-        android:layout_marginLeft="65dp"
-        android:layout_marginTop="50dp"
-        android:layout_toRightOf="@id/recommend_image3"
-        android:scaleType="fitXY" />
-
-    <Button
-        android:id="@+id/btn_accept_recommend"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="接受"
-        android:textSize="20sp"
-        android:layout_below="@id/recommend_image3"
-        android:layout_marginLeft="70dp"
-        android:layout_marginTop="100dp" />
 
     <Button
         android:id="@+id/btn_next_group"
@@ -72,8 +36,9 @@
         android:layout_height="wrap_content"
         android:text="下一组"
         android:textSize="20sp"
-        android:layout_below="@id/recommend_image3"
-        android:layout_toRightOf="@id/btn_accept_recommend"
-        android:layout_marginTop="100dp"
+        android:background="#FFFF00"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/recommend_image1"
+        android:layout_marginTop="30dp"
         android:layout_marginLeft="70dp"/>
 </RelativeLayout>

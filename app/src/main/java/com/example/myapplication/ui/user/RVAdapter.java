@@ -1,7 +1,6 @@
 package com.example.myapplication.ui.user;
 import android.content.Context;
 import android.os.Handler;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -126,7 +125,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.UserViewHolder> {
                                 popupWindow.dismiss();
                                 //插入成功
 
-                                if(!myUsers.isExist(userEmail)) {
+                                if(!myUsers.isUserEmailExist(userEmail)) {
                                     Toast.makeText(context, "删除成功", Toast.LENGTH_LONG).show();
                                     removeDataAt(position);
                                     dialog.cancel();

@@ -44,7 +44,6 @@ public class FoodManagerFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mBtnAdd = view.findViewById(R.id.btn_add_food);
-        mBtnModify = view.findViewById(R.id.btn_modify_food);
         mBtnDelete = view.findViewById(R.id.btn_delete_food);
 
         mBtnAdd.setOnClickListener(new View.OnClickListener() {
@@ -62,12 +61,6 @@ public class FoodManagerFragment extends Fragment {
                 startActivity(intent);
             }
         });
-        mBtnModify.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), ModifyFoodActivity.class);
-                startActivity(intent);
-            }
-        });
+
     }
 }

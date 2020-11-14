@@ -39,6 +39,7 @@ dependencies {
     implementation 'com.github.ybq:Android-SpinKit:1.4.0'
     implementation 'org.projectlombok:lombok:1.18.8'
     implementation files('libs\\jtds-1.2.7.jar')
+    implementation files('libs\\pinyin4j-2.5.0.jar')
     annotationProcessor 'org.projectlombok:lombok:1.18.8'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
     testImplementation 'junit:junit:4.12'

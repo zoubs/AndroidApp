@@ -4,15 +4,18 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.example.myapplication.DaoImpl.FoodDataDaoImpl;
 import com.example.myapplication.util.ToastUtil;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Collections;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,12 +25,8 @@ public class MainActivity extends AppCompatActivity {
     toast2.setGravity(Gravity.CENTER, 0, 0);
     toast2.show();*/
     private Button mBtnLogin, mBtnSignUp;
-    private EditText emailText,pwdText;
+    private EditText userNameText,pwdText;
     //public static String userName;
-    //database connect
-    private String url = "jdbc:mysql://39.101.211.144:3306/android_db?useSSL=false&allowPublicKeyRetrieval=true";
-    private String user = "android";
-    private String pswd = "android123456";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //登录跳转按钮
-        emailText = findViewById(R.id.emailText);
+        userNameText = findViewById(R.id.emailText);
         pwdText = findViewById(R.id.pwdText);
         mBtnLogin = findViewById(R.id.mBtnLogin);
         mBtnSignUp = findViewById(R.id.mBtnSignUp);
@@ -53,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         String storePassword = getPassword();
 
         if(storeEmail != null && !storeEmail.isEmpty()) {
-            emailText.setText(storeEmail);
+            userNameText.setText(storeEmail);
         }
 
         if(storePassword != null && !storePassword.isEmpty()) {
@@ -63,43 +62,59 @@ public class MainActivity extends AppCompatActivity {
         mBtnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email = emailText.getText().toString();
+                String userName = userNameText.getText().toString();
                 String password = pwdText.getText().toString();
-                MyUsers myUsers = new MyUsers(url,user,pswd);
-                Log.d("ic_user",email);
-                Log.d("pass",password);
+                MyUsers myUsers = new MyUsers();
+
                 //复杂
-                if(myUsers.isMatchPassword(email,password)) {
+                if(myUsers.isMatchPassword(userName,password)) {
                     //Toast.makeText(MainActivity.this, "登录成功！", Toast.LENGTH_SHORT).show();
 
-                    save(email,password);
+                    save(userName,password);
 
-                    System.out.print("isExist:");
-                    System.out.println(myUsers.isExist(email));
 
                     Bundle bundle = new Bundle();
-                    bundle.putString("email",email);
+                    bundle.putString("email",userName);
                     bundle.putBoolean("is_admin",myUsers.isAdmin());
 
                     System.out.println(myUsers.isAdmin());
                     Intent intent = new Intent();
+                    final GlobalInfo globalInfo = (GlobalInfo) getApplication();
                     if(!myUsers.isAdmin()) {
+                        Thread threadGetFood;
+                        threadGetFood = new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                FoodDataDaoImpl foodDataDao = new FoodDataDaoImpl();
+                                List<String> allFood = foodDataDao.findAllFoodName();
+                                Collections.sort(allFood, new MyChineseComparator());
+                                globalInfo.setAllFood(allFood);
+                            }
+                        });
+                        threadGetFood.start();
+                        try {
+                            threadGetFood.join();
+                        } catch (InterruptedException e){
+                            e.printStackTrace();
+                        }
                         intent.setClass(MainActivity.this,HomePageActivity.class);
                     }
                     else {
                         intent.setClass(MainActivity.this,AdminHomePageActivity.class);
                     }
                     intent.putExtras(bundle);
-                    GlobalInfo globalInfo = (GlobalInfo) getApplication();
-                    globalInfo.setUserName(email);
+
+                    globalInfo.setUserEmail(myUsers.getGUserEmail());
+                    globalInfo.setUserName(myUsers.getGUserName());
                     globalInfo.setUserPassword(password);
-                    //fixme 缺一个用户id
+                    globalInfo.setNowUserId(myUsers.getUserId());
+                    globalInfo.setIsAdmin(myUsers.isAdmin());
                     ToastUtil.showMsg(getApplicationContext(),"登录成功！");
                     startActivity(intent);
                 }
                 else {
                     //Toast.makeText(MainActivity.this, "登录失败！", Toast.LENGTH_LONG).show();
-                    ToastUtil.showMsg(getApplicationContext(),"登录失败！");
+                    ToastUtil.showMsg(getApplicationContext(),myUsers.getFailInformation());
                 }
             }
         });//登录按钮申明结束

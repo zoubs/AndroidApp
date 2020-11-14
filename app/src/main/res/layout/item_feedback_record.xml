@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F8F8FF"
+    >
+
+    <EditText
+        android:id="@+id/item_feedback_title"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/bg_padding"
+        android:fadeScrollbars="true"
+        android:gravity="left|top"
+        android:hint="标题"
+        android:layout_marginTop="10dp"
+        android:padding="5dp"
+        android:scrollbars="vertical"
+        android:textColor="#000000"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/item_feedback_describe"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="5dp"
+        android:layout_below="@id/item_feedback_title"
+        android:background="@drawable/bg_padding"
+        android:fadeScrollbars="true"
+        android:gravity="left|top"
+        android:hint="反馈内容"
+        android:padding="5dp"
+        android:scrollbars="vertical"
+        android:textColor="#000000"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/item_feedback_reply"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_below="@id/item_feedback_describe"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/bg_padding"
+        android:fadeScrollbars="true"
+        android:gravity="left|top"
+        android:hint="回复内容"
+        android:padding="5dp"
+        android:scrollbars="vertical"
+        android:textColor="#000000"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/item_feedback_status"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/item_feedback_reply"
+        android:layout_marginLeft="250dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/bg_input"
+        android:backgroundTint="#FAFAD2"
+        android:gravity="center"
+        android:textSize="20sp" />
+</RelativeLayout>

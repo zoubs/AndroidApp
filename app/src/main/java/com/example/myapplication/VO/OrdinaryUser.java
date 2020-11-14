@@ -14,4 +14,7 @@ public class OrdinaryUser {
         this.baseInfo = baseInfo;
         this.userData = userData;
     }
+    public OrdinaryUser(User baseInfo){
+        this.baseInfo = baseInfo;
+    }
 }

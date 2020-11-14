@@ -28,6 +28,7 @@ import android.widget.TextView;
 
 public class HomePageActivity extends AppCompatActivity {
 
+    private GlobalInfo globalInfo;
     private AppBarConfiguration mAppBarConfiguration;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,22 +47,17 @@ public class HomePageActivity extends AppCompatActivity {
         //Log.d("test",username.getText().toString());
         //设置任务栏用户名（暂用邮箱替代）
 
-        userName.setText(preBundle.getString("email"));
+        //userName.setText(preBundle.getString("email"));
 
 
+        globalInfo = (GlobalInfo)getApplication();
 
         //获取和设置完成
 
+        userName.setText(globalInfo.getUserName());
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+
 
 
         // Passing each menu ID as a set of Ids because each

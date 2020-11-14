@@ -26,7 +26,7 @@
         android:layout_height="200dp"
         android:layout_marginTop="100dp"
         android:background="@drawable/bg_padding"
-        android:hint="问题内容"
+        android:hint="标题"
         android:fadeScrollbars="true"
         android:scrollbars="vertical"
         android:textColor="#000000"

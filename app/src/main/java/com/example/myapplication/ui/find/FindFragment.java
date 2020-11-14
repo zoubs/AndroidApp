@@ -1,5 +1,6 @@
 package com.example.myapplication.ui.find;
 
+import android.annotation.SuppressLint;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.text.InputType;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,25 +17,17 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myapplication.DaoImpl.FoodDataDaoImpl;
 import com.example.myapplication.PO.FoodData;
 import com.example.myapplication.R;
 
 public class FindFragment extends Fragment {
 
-    private FindViewModel findViewModel;
     private EditText etFoodName, etFoodType, etFoodCalorie;
     private Button mBtnSubmit;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        findViewModel =
-                ViewModelProviders.of(this).get(FindViewModel.class);
         View root = inflater.inflate(R.layout.fragment_find, container, false);
-
-
-        //todo 查询食物这块，不知道食物数据存在哪里，你看看这块应该怎么写比较好
-        FoodData foodData = new FoodData();
-
-
         return root;
     }
 
@@ -52,20 +46,39 @@ public class FindFragment extends Fragment {
         mBtnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String name = etFoodName.getText().toString();
+                final String name = etFoodName.getText().toString();
+                final boolean[] isExist = new boolean[1];
                 if(!name.isEmpty()) {
-                    //todo 查询
+                    Thread myThread;
+                    myThread = new Thread(new Runnable() {
+                        @SuppressLint("SetTextI18n")
+                        @Override
+                        public void run() {
+                            FoodDataDaoImpl foodDataDao = new FoodDataDaoImpl();
+                            FoodData foodData = foodDataDao.findByFoodName(name);
+                            if(foodData == null) {
+                                //Toast.makeText(getActivity(), "该食物尚未添加",Toast.LENGTH_SHORT).show();
+                                isExist[0] = false;
+                                etFoodType.setText("");
+                                etFoodCalorie.setText("");
+                            } else {
+                                isExist[0] = true;
+                                etFoodType.setText(foodData.getFoodSpecies());
+                                etFoodCalorie.setText(foodData.getCalorie().toString());
+                            }
+                        }
+                    });
+                    myThread.start();
+                    try {
+                        myThread.join();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    if(!isExist[0]) {
+                        Toast.makeText(getActivity(), "该食物尚未添加",Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
-    }
-
-    class MyDecoration extends RecyclerView.ItemDecoration {
-        @Override
-        public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
-            super.getItemOffsets(outRect, view, parent, state);
-            int gap = getResources().getDimensionPixelSize(R.dimen.dividerHeight);
-            outRect.set(gap,gap,gap,gap);
-        }
     }
 }

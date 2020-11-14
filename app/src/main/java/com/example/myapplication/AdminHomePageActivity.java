@@ -17,7 +17,6 @@ import com.example.myapplication.ui.adminmodule.usermanager.DeleteUserActivity;
 import com.example.myapplication.ui.adminmodule.usermanager.UserManagerFragment;
 import com.example.myapplication.ui.find.FindFragment;
 import com.example.myapplication.ui.info.InfoFragment;
-import com.example.myapplication.ui.logup.LogUpFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class AdminHomePageActivity extends AppCompatActivity {
@@ -80,7 +79,6 @@ public class AdminHomePageActivity extends AppCompatActivity {
                         getSupportFragmentManager().beginTransaction().replace(R.id.fl_admin_container, userManagerFragment, "userManageFragment").commitAllowingStateLoss();
                         fabAdd.show();
                         fabDel.show();
-                        final LogUpFragment logUpFragment = new LogUpFragment(true);
                         fabAdd.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {

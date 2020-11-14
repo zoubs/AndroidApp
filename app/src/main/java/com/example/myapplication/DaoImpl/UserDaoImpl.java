@@ -28,7 +28,7 @@ public class UserDaoImpl implements com.example.myapplication.Dao.UserDao {
             psmt.setString(2, admin.getUserName());
             psmt.setString(3, admin.getUserPassword());
             psmt.setTimestamp(4, admin.getRegisterTime());
-            psmt.setString(5, admin.getUserType());
+            psmt.setString(5, "Admin");
 
             boolean rs = psmt.execute();
 
@@ -42,19 +42,49 @@ public class UserDaoImpl implements com.example.myapplication.Dao.UserDao {
     }
 
     @Override
-    public Boolean insertOrdinaryUser(OrdinaryUser user) {
+    public OrdinaryUserData findUserDetailInfo(Integer userId) {
+        try {
+            OrdinaryUserData result = null;
+            Connection conn = MyConnections.getConnection();
+            String sql = "select * from master.dbo.[OrdinaryUserData] where UserID = ?;";
+            PreparedStatement psmt = conn.prepareStatement(sql);
+            psmt.setInt(1,userId);
+            ResultSet rs = psmt.executeQuery();
+
+            while(rs.next()) {
+                result = new OrdinaryUserData( rs.getInt("UserID"),
+                        rs.getDouble("UserSature"),
+                        rs.getDouble("UserWeight"),
+                        rs.getDouble("UserBp"),
+                        rs.getInt("UserAge"));
+            }
+
+            conn.close();
+            psmt.close();
+            rs.close();
+            return result;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public Boolean insertOrdinaryUser(User user) {
         try {
             Connection conn = MyConnections.getConnection();
             String sql = "insert into master.dbo.[User] (UserEmail,UserName,UserPassword,RegisterTime,UserType)" +
                     "values ( ? , ? , ? , ? , ? );";
             PreparedStatement psmt = conn.prepareStatement(sql);
-            psmt.setString(1, user.getBaseInfo().getUserEmail());
-            psmt.setString(2, user.getBaseInfo().getUserName());
-            psmt.setString(3, user.getBaseInfo().getUserPassword());
-            psmt.setTimestamp(4, user.getBaseInfo().getRegisterTime());
-            psmt.setString(5, user.getBaseInfo().getUserType());
+            psmt.setString(1, user.getUserEmail());
+            psmt.setString(2, user.getUserName());
+            psmt.setString(3, user.getUserPassword());
+            psmt.setTimestamp(4, user.getRegisterTime());
+            psmt.setString(5, "User");
             boolean rs = psmt.execute();
 
+            //添加用户时不添加默认信息
+            /*
             sql = "select UserID from master.dbo.[User] where UserName = ?";
             psmt = conn.prepareStatement(sql);
             psmt.setString(1, user.getBaseInfo().getUserName());
@@ -75,7 +105,30 @@ public class UserDaoImpl implements com.example.myapplication.Dao.UserDao {
             psmt.setDouble(3, user.getUserData().getUserWeight());
             psmt.setDouble(4, user.getUserData().getUserBP());
             psmt.setInt(5, user.getUserData().getUserAge());
-            rs = rs & psmt.execute();
+            rs = rs & psmt.execute();*/
+
+            conn.close();
+            psmt.close();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public Boolean insertUserDetailInfo(OrdinaryUserData userData){
+        try {
+            Connection conn = MyConnections.getConnection();
+            String sql = "insert into master.dbo.[OrdinaryUserData] (UserID,UserSature,UserWeight,UserBp,UserAge)" +
+                    "values ( ? , ? , ? , ? , ? )";
+            PreparedStatement psmt = conn.prepareStatement(sql);
+            psmt.setInt(1, userData.getUserID());
+            psmt.setDouble(2, userData.getUserSature());
+            psmt.setDouble(3, userData.getUserWeight());
+            psmt.setDouble(4, userData.getUserBP());
+            psmt.setInt(5, userData.getUserAge());
+
+            boolean rs = psmt.execute();
 
             conn.close();
             psmt.close();
@@ -110,7 +163,6 @@ public class UserDaoImpl implements com.example.myapplication.Dao.UserDao {
         try {
             Connection conn = MyConnections.getConnection();
             String sql = "delete from master.dbo.[User] where UserID = ? ;";
-
             PreparedStatement psmt = conn.prepareStatement(sql);
             psmt.setInt(1, userID);
             psmt.execute();
@@ -140,6 +192,34 @@ public class UserDaoImpl implements com.example.myapplication.Dao.UserDao {
             psmt.setString(3, admin.getUserPassword());
             psmt.setString(4, admin.getUserType());
             psmt.setInt(5, admin.getUserID());
+
+            boolean rs = psmt.execute();
+
+            conn.close();
+            psmt.close();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    @Override
+    public Boolean updateUserBaseInfo(User user) {
+        try {
+            Connection conn = MyConnections.getConnection();
+            String sql = "update master.dbo.[User] set " +
+                    "UserEmail = ? ," +
+                    "UserName = ? ," +
+                    "UserPassword = ? ," +
+                    "UserType = ? " +
+                    "where UserID = ? ;";
+            PreparedStatement psmt = conn.prepareStatement(sql);
+            psmt.setString(1, user.getUserEmail());
+            psmt.setString(2, user.getUserName());
+            psmt.setString(3, user.getUserPassword());
+            psmt.setString(4, user.getUserType());
+            psmt.setInt(5, user.getUserID());
 
             boolean rs = psmt.execute();
 
@@ -188,6 +268,64 @@ public class UserDaoImpl implements com.example.myapplication.Dao.UserDao {
         } catch (Exception e) {
             e.printStackTrace();
             return false;
+        }
+    }
+
+    @Override
+    public User findUserByEmail(String userEmail) {
+        try {
+            User result = null;
+            Connection conn = MyConnections.getConnection();
+            String sql = "select * from master.dbo.[User] where UserEmail = ?;";
+            PreparedStatement psmt = conn.prepareStatement(sql);
+            psmt.setString(1,userEmail);
+            ResultSet rs = psmt.executeQuery();
+
+            while(rs.next()) {
+                result = new User( rs.getInt("UserID"),
+                        rs.getString("UserEmail"),
+                        rs.getString("UserName"),
+                        rs.getString("UserPassword"),
+                        rs.getTimestamp("RegisterTime"),
+                        rs.getString("UserType"));
+            }
+
+            conn.close();
+            psmt.close();
+            rs.close();
+            return result;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public User findUserByName(String userName) {
+        try {
+            User result = null;
+            Connection conn = MyConnections.getConnection();
+            String sql = "select * from master.dbo.[User] where UserName = ?;";
+            PreparedStatement psmt = conn.prepareStatement(sql);
+            psmt.setString(1,userName);
+            ResultSet rs = psmt.executeQuery();
+
+            while(rs.next()) {
+                result = new User( rs.getInt("UserID"),
+                        rs.getString("UserEmail"),
+                        rs.getString("UserName"),
+                        rs.getString("UserPassword"),
+                        rs.getTimestamp("RegisterTime"),
+                        rs.getString("UserType"));
+            }
+
+            conn.close();
+            psmt.close();
+            rs.close();
+            return result;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
     }
 

@@ -11,12 +11,12 @@
         android:layout_height="50dp"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="50dp"
-        android:text="昵 称:"
+        android:text="用户名:"
         android:textSize="25sp" />
 
     <EditText
         android:id="@+id/et_user_nickname_modify"
-        android:layout_width="250dp"
+        android:layout_width="230dp"
         android:imeOptions="actionNone"
         android:inputType="text"
         android:lines="1"
@@ -36,12 +36,12 @@
         android:layout_below="@id/text_nickname_modify"
         android:layout_marginStart="10dp"
         android:layout_marginTop="30dp"
-        android:text="年 龄:"
+        android:text="年    龄:"
         android:textSize="25sp" />
 
     <EditText
         android:id="@+id/et_user_age_modify"
-        android:layout_width="250dp"
+        android:layout_width="230dp"
         android:layout_height="50dp"
         android:layout_below="@id/et_user_nickname_modify"
         android:layout_marginLeft="40dp"
@@ -59,14 +59,14 @@
         android:layout_below="@id/text_user_age_modify"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="30dp"
-        android:text="身 高:"
+        android:text="身    高:"
         android:textSize="25sp" />
 
     <EditText
         android:id="@+id/et_user_height_modify"
         android:inputType="numberDecimal|number"
         android:imeOptions="actionNext"
-        android:layout_width="150dp"
+        android:layout_width="130dp"
         android:layout_height="50dp"
         android:layout_below="@id/text_user_age_modify"
         android:layout_marginLeft="40dp"
@@ -93,14 +93,14 @@
         android:layout_below="@id/text_user_height_modify"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="30dp"
-        android:text="体 重:"
+        android:text="体    重:"
         android:textSize="25sp" />
 
     <EditText
         android:id="@+id/et_user_weight_modify"
         android:inputType="numberDecimal|number"
         android:imeOptions="actionNext"
-        android:layout_width="150dp"
+        android:layout_width="130dp"
         android:layout_height="50dp"
         android:layout_below="@id/et_user_height_modify"
         android:layout_marginLeft="40dp"
@@ -125,7 +125,7 @@
         android:layout_below="@id/text_user_weight_modify"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="30dp"
-        android:text="血 压:"
+        android:text="血    压:"
         android:textSize="25sp" />
 
     <EditText

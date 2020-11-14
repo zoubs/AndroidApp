@@ -10,7 +10,7 @@
         android:id="@+id/text_fm_del_3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="删除食物"
+        android:text="修改食物"
         android:layout_marginTop="10dp"
         android:textSize="40sp"
         android:gravity="center"
@@ -93,6 +93,16 @@
             android:layout_toRightOf="@id/et_del_food_name"
             android:text="删除"
             android:textSize="25sp"/>
+        <Button
+            android:id="@+id/btn_del_food_modify"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@id/et_del_food_name"
+            android:layout_below="@id/btn_del_food_submit"
+            android:text="修改"
+            android:textSize="25sp"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="50dp"
@@ -124,6 +134,7 @@
         <EditText
             android:id="@+id/et_del_food_calorie"
             android:singleLine="true"
+            android:inputType="numberDecimal"
             android:layout_width="140dp"
             android:layout_height="50dp"
             android:layout_marginTop="40dp"

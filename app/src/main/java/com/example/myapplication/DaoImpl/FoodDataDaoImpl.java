@@ -37,6 +37,25 @@ public class FoodDataDaoImpl implements FoodDataDao {
     }
 
     @Override
+    public Boolean deleteByName(String foodName) {
+        try {
+            Connection conn = MyConnections.getConnection();
+            String sql = "delete from master.dbo.[FoodData] where FoodName = ? ;";
+            PreparedStatement psmt = conn.prepareStatement(sql);
+            psmt.setString(1, foodName);
+            boolean rs = psmt.execute();
+
+            conn.close();
+            psmt.close();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+
+    @Override
     public Boolean delete(Integer FoodID) {
         try {
             Connection conn = MyConnections.getConnection();
@@ -115,6 +134,32 @@ public class FoodDataDaoImpl implements FoodDataDao {
         }
     }
 
+
+
+    @Override
+    public List<String> findAllFoodName() {
+        try {
+            List<String> list = new LinkedList<>();
+            Connection conn = MyConnections.getConnection();
+            String sql = "select FoodName from master.dbo.[FoodData];";
+            PreparedStatement psmt = conn.prepareStatement(sql);
+            ResultSet rs = psmt.executeQuery();
+
+            while(rs.next()) {
+                list.add(rs.getString("FoodName")
+                );
+            }
+
+            conn.close();
+            psmt.close();
+            rs.close();
+            return list;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
+    }
+
     @Override
     public FoodData findByFoodID(Integer FoodID) {
         try {
@@ -123,6 +168,37 @@ public class FoodDataDaoImpl implements FoodDataDao {
             String sql = "select * from master.dbo.[FoodData] where FoodID = ? ;";
             PreparedStatement psmt = conn.prepareStatement(sql);
             psmt.setInt(1, FoodID);
+            ResultSet rs = psmt.executeQuery();
+
+            while(rs.next()) {
+                result = new FoodData(
+                        rs.getInt("FoodID"),
+                        rs.getString("FoodName"),
+                        rs.getString("FoodSpecies"),
+                        rs.getDouble("Calorie"),
+                        rs.getTimestamp("UpdateTime"),
+                        rs.getBytes("Image")
+                );
+            }
+
+            conn.close();
+            psmt.close();
+            rs.close();
+            return result;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public FoodData findByFoodName(String foodName) {
+        try {
+            FoodData result = null;
+            Connection conn = MyConnections.getConnection();
+            String sql = "select * from master.dbo.[FoodData] where FoodName = ? ;";
+            PreparedStatement psmt = conn.prepareStatement(sql);
+            psmt.setString(1, foodName);
             ResultSet rs = psmt.executeQuery();
 
             while(rs.next()) {

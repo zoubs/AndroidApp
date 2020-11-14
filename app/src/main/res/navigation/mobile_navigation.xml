@@ -25,7 +25,7 @@
 
     <fragment
         android:id="@+id/nav_slideshow"
-        android:name="com.example.myapplication.ui.recordfood.RecordFoodFragment"
+        android:name="com.example.myapplication.ui.recorddiet.RecordFoodFragment"
         android:label="@string/menu_record_food"
         tools:layout="@layout/fragment_record_food" />
 

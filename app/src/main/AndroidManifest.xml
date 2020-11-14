@@ -12,12 +12,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.adminmodule.usermanager.AddUserActivity"></activity>
+        <activity android:name=".ui.feedback.FeedbackRecordActivity"></activity>
+        <activity android:name=".ui.adminmodule.usermanager.AddUserActivity" />
         <activity android:name=".ui.adminmodule.usermanager.DeleteUserActivity" />
-        <activity android:name=".ui.adminmodule.foodmanager.ModifyFoodActivity" />
         <activity android:name=".ui.adminmodule.foodmanager.DeleteFoodActivity" />
         <activity android:name=".ui.adminmodule.foodmanager.AddFoodActivity" />
-        <activity android:name=".ui.recordfood.FindDietActivity" />
+        <activity android:name=".ui.recorddiet.FindDietActivity" />
         <activity android:name=".ui.recordsleep.FindSleepActivity" />
         <activity android:name=".ui.info.InfoActivity" />
         <activity android:name=".ui.info.LogOutActivity" />

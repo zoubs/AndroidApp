@@ -2,6 +2,7 @@ package com.example.myapplication.ui.feedback;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,20 +11,28 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.example.myapplication.ui.feedback.FeedBack;
+
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.example.myapplication.DaoImpl.FeedbackDaoImpl;
+import com.example.myapplication.DaoImpl.UserDaoImpl;
+import com.example.myapplication.GlobalInfo;
+import com.example.myapplication.PO.Feedback;
 import com.example.myapplication.R;
+
+import java.sql.Timestamp;
+import java.util.Date;
 
 public class FeedbackFragment extends Fragment {
     private FeedbackViewModel feedbackViewModel;
     private EditText feedbackTittle, feedbackContext;
     private Button mBtnSubmit, mBtnRecord;
-    private FeedBack feedBackInformation;
+    private Feedback feedBack;
+    private GlobalInfo globalInfo;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         feedbackViewModel =
@@ -47,7 +56,7 @@ public class FeedbackFragment extends Fragment {
         feedbackContext= view.findViewById(R.id.et_feedback_describe);
         mBtnSubmit = view.findViewById(R.id.btn_feedback_submit);
         mBtnRecord = view.findViewById(R.id.btn_feedback_record);
-
+        globalInfo = (GlobalInfo)getActivity().getApplication();
         mBtnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -55,16 +64,48 @@ public class FeedbackFragment extends Fragment {
             }
         });
 
+        mBtnRecord.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), FeedbackRecordActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void submitFeedbackData() {
         String quesTittle = feedbackTittle.getText().toString();
         String questionContext = feedbackContext.getText().toString();
+        final Boolean[] isSuccess = new Boolean[1];
         if (!quesTittle.isEmpty() && !questionContext.isEmpty()) {
-            //todo 两个数据已获得，进行数据库操作,还需要获取用户名存数据库表
 
-            feedBackInformation.setQuestionContext(questionContext);
-            feedBackInformation.setQuesTittle(quesTittle);
+            feedBack = new Feedback();
+            feedBack.setQuestionContent(questionContext);
+            feedBack.setQuestionTitle(quesTittle);
+            feedBack.setUserID(globalInfo.getNowUserId());
+            feedBack.setIsResolved(0);
+            feedBack.setInquiryTime(new Timestamp(new Date().getTime()));
+
+            Thread myThread;
+            myThread = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    FeedbackDaoImpl feedbackDao = new FeedbackDaoImpl();
+                    isSuccess[0] = feedbackDao.insert(feedBack);
+                }
+            });
+            myThread.start();
+            try {
+                myThread.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            if (isSuccess[0]) {
+                Toast.makeText(getActivity(), "提交成功", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getActivity(), "提交失败", Toast.LENGTH_SHORT).show();
+            }
 
             //Toast.makeText(getContext(), "保存成功", Toast.LENGTH_LONG).show();
         } else {

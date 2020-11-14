@@ -68,6 +68,7 @@
         android:layout_height="50dp"
         android:layout_marginTop="40dp"
         android:singleLine="true"
+        android:inputType="numberDecimal"
         android:layout_below="@id/et_add_food_type"
         android:layout_toRightOf="@id/text_fm_add_2"
         android:background="@drawable/bg_input"

@@ -97,17 +97,18 @@ public class AddUserActivity extends AppCompatActivity {
                     final boolean is_admin = (user_identify.equals("管理员"))? true : false;
 
                     //database connect
-                    final MyUsers myUsers = new MyUsers("jdbc:mysql://39.101.211.144:3306/android_db?useSSL=false&allowPublicKeyRetrieval=true",
+                    final MyUsers myUsers = new MyUsers(AddUserActivity.this);
+                    /*final MyUsers myUsers = new MyUsers("jdbc:mysql://39.101.211.144:3306/android_db?useSSL=false&allowPublicKeyRetrieval=true",
                             "android",
-                            "android123456");
+                            "android123456");*/
 
                     //邮箱已被注册
-                    if(myUsers.isExist(user_email)) {
+                    if(myUsers.isUserEmailExist(user_email)) {
                         Toast.makeText(AddUserActivity.this, "该邮箱已被注册！", Toast.LENGTH_LONG).show();
                     }
                     //邮箱未被注册
                     else {
-                        myUsers.userLogUp(user_email,user_name,user_pswd,is_admin);
+                        myUsers.userSignUp(user_email,user_name,user_pswd,is_admin);
                         //progress.showAsDropDown(AddUserActivity.class);
 
                         Handler handler = new Handler();
@@ -116,7 +117,7 @@ public class AddUserActivity extends AppCompatActivity {
                             public void run() {
                                 progress.dismiss();
                                 //插入成功
-                                if(myUsers.isExist(user_email)) {
+                                if(myUsers.isUserEmailExist(user_email)) {
                                     Toast.makeText(AddUserActivity.this, "成功", Toast.LENGTH_LONG).show();
                                     UserManageFragment userManageFragment = (UserManageFragment)getSupportFragmentManager().findFragmentByTag("userManageFragment");
                                     if(userManageFragment == null) {

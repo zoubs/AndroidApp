@@ -18,6 +18,7 @@
     <EditText
         android:id="@+id/et_find_food_name"
         android:imeOptions="actionNext"
+        android:inputType="text"
         android:layout_width="140dp"
         android:layout_height="50dp"
         android:singleLine="true"

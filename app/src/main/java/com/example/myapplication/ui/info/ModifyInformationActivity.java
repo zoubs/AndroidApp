@@ -14,12 +14,14 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.NumberPicker;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.example.myapplication.DaoImpl.UserDaoImpl;
+import com.example.myapplication.GlobalInfo;
 import com.example.myapplication.PO.OrdinaryUserData;
+import com.example.myapplication.PO.User;
 import com.example.myapplication.R;
+import com.example.myapplication.VO.OrdinaryUser;
 
 import java.util.Calendar;
 import java.util.regex.Pattern;
@@ -27,12 +29,17 @@ import java.util.regex.Pattern;
 public class ModifyInformationActivity extends AppCompatActivity {
     private EditText editTextAge, editTextUserName, editTextWeight, editTextHeight, editTextPressure;
     private Button mBtnSubmit;
+    private OrdinaryUser ordinaryUser;
+    private GlobalInfo globalInfo;
+    private boolean isExist;
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_modify_information);
+        globalInfo = (GlobalInfo)getApplication();
 
+        editTextUserName = findViewById(R.id.et_user_nickname_modify);
         editTextAge = findViewById(R.id.et_user_age_modify);
         //editTextUserName = findViewById(R.id.et_user_nickname_modify);
         editTextHeight = findViewById(R.id.et_user_height_modify);
@@ -41,9 +48,51 @@ public class ModifyInformationActivity extends AppCompatActivity {
         mBtnSubmit = findViewById(R.id.user_info_submit_modify);
 
 
+
+        final Thread thread;
+        thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                UserDaoImpl userDao = new UserDaoImpl();
+                ordinaryUser = userDao.findOrdinaryByID(globalInfo.getNowUserId());
+                isExist = ordinaryUser != null;
+                if (isExist) {
+                    OrdinaryUserData userDetail = ordinaryUser.getUserData();
+
+                    double weight = userDetail.getUserWeight();
+                    double height = userDetail.getUserSature();
+                    double bp = userDetail.getUserBP();
+                    double bmi = weight *10000 /(height*height);
+                    String bmiText = String.format("%.2f", bmi);    //保留两位小数
+                    int age = userDetail.getUserAge();
+
+                    editTextUserName.setText(globalInfo.getUserName());
+                    editTextHeight.setText(String.format("%.2f", height));
+                    editTextWeight.setText(String.format("%.2f",weight));
+                    editTextPressure.setText(String.format("%.2f", bp));
+                    editTextAge.setText(String.valueOf(age));
+                }
+            }
+        });
+        thread.start();
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        if(!isExist) {   //还未添加过信息
+            editTextUserName.setText(globalInfo.getUserName());
+            editTextHeight.setText("");
+            editTextWeight.setText("");
+            editTextPressure.setText("");
+            editTextAge.setText("");
+        }
+
+
+
         editTextAge.setInputType(InputType.TYPE_NULL);
 
-        //fixme 两种方法，我觉得OnTouch好点
         editTextAge.setOnTouchListener(new View.OnTouchListener() {
             @SuppressLint("ClickableViewAccessibility")
             @Override
@@ -60,9 +109,11 @@ public class ModifyInformationActivity extends AppCompatActivity {
         mBtnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                OrdinaryUserData userData = new OrdinaryUserData();
+                User userBaseInfo = new User();
+                final OrdinaryUserData userData = new OrdinaryUserData();
+                final OrdinaryUser ordinaryUserModify = new OrdinaryUser();
                 String age = editTextAge.getText().toString();
-                String userName = editTextUserName.getText().toString();
+                final String userName = editTextUserName.getText().toString();
                 String height = editTextHeight.getText().toString();
                 String weight = editTextWeight.getText().toString();
                 String pressure = editTextPressure.getText().toString();
@@ -76,28 +127,119 @@ public class ModifyInformationActivity extends AppCompatActivity {
                         Toast.makeText(ModifyInformationActivity.this, "用户名不规范", Toast.LENGTH_SHORT).show();
                         valid = false;
                     }
-                    if (!isDecimal(height)) {
+                    else if (!isDecimal(height)) {
                         Toast.makeText(ModifyInformationActivity.this, "身高数据填写不规范", Toast.LENGTH_SHORT).show();
                         valid = false;
                     }
-                    if (!isDecimal(weight)) {
+                    else if (!isDecimal(weight)) {
                         Toast.makeText(ModifyInformationActivity.this, "体重数据填写不规范", Toast.LENGTH_SHORT).show();
                         valid = false;
                     }
-                    if (!isDecimal(pressure)) {
+                    else if (!isDecimal(pressure)) {
                         Toast.makeText(ModifyInformationActivity.this, "血压数据填写不规范", Toast.LENGTH_SHORT).show();
                         valid = false;
                     }
-                    if (!isValidName(userName)) {
-                        Toast.makeText(ModifyInformationActivity.this, "昵称填写不规范", Toast.LENGTH_SHORT).show();
+                    else if (!isValidName(userName)) {
+                        Toast.makeText(ModifyInformationActivity.this, "用户名填写不规范", Toast.LENGTH_SHORT).show();
                         valid = false;
                     }
                     if (valid) {
+
+                        Thread thread1; //查看新用户名是否已经存在
+                        final boolean[] isNameExist = new boolean[1];
+                        thread1 = new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                UserDaoImpl userDao = new UserDaoImpl();
+                                User userNewName = userDao.findUserByName(userName);
+                                isNameExist[0] = userNewName != null;
+                            }
+                        });
+                        thread1.start();
+                        try {
+                            thread1.join();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        userData.setUserID(globalInfo.getNowUserId());
                         userData.setUserWeight(Double.parseDouble(weight));
                         userData.setUserSature(Double.parseDouble(height));
                         userData.setUserAge(Integer.parseInt(age));
                         userData.setUserBP(Double.parseDouble(pressure));
-                        showConfirmDialog();
+                        if(isNameExist[0] && !userName.equals(globalInfo.getUserName())) {  //修改了，且已存在
+                            Toast.makeText(ModifyInformationActivity.this, "该用户名已被占用", Toast.LENGTH_SHORT).show();
+                        }
+                        else {  //没有修改用户名或者改了用户名，但是用户名不存在
+                            if(isExist) {  //存在详细信息的记录则更新
+                                ordinaryUserModify.setUserData(userData);
+
+                                User baseInfo = new User();
+                                baseInfo.setUserName(userName);  //更新用户名
+                                baseInfo.setUserEmail(globalInfo.getUserEmail());
+                                baseInfo.setUserPassword(globalInfo.getUserPassword());
+                                baseInfo.setUserID(globalInfo.getNowUserId());
+                                baseInfo.setUserType("User");
+                                ordinaryUserModify.setBaseInfo(baseInfo);
+
+                                Thread threadUpdate;
+                                final boolean[] isSuccess = new boolean[1];
+                                threadUpdate = new Thread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        UserDaoImpl userDao = new UserDaoImpl();
+                                        isSuccess[0] = userDao.updateOrdinary(ordinaryUserModify);
+                                    }
+                                });
+                                threadUpdate.start();
+                                try {
+                                    threadUpdate.join();
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                                if (isSuccess[0]) {
+                                    globalInfo.setUserName(userName);
+                                    Toast.makeText(ModifyInformationActivity.this, "提交成功", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(ModifyInformationActivity.this, "提交失败", Toast.LENGTH_SHORT).show();
+                                }
+                            } else {  //不存在用户的详细信息记录， 进行插入
+
+                                ordinaryUserModify.setUserData(userData);
+
+                                User baseInfo = new User();
+                                baseInfo.setUserName(userName);  //更新用户名
+                                baseInfo.setUserEmail(globalInfo.getUserEmail());
+                                baseInfo.setUserPassword(globalInfo.getUserPassword());
+                                baseInfo.setUserID(globalInfo.getNowUserId());
+                                baseInfo.setUserType("User");
+                                ordinaryUserModify.setBaseInfo(baseInfo);
+
+
+                                Thread threadInsert;
+                                final boolean[] isSuccess = new boolean[2];
+                                threadInsert = new Thread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        UserDaoImpl userDao = new UserDaoImpl();
+                                        isSuccess[0] = userDao.insertUserDetailInfo(userData);
+                                        isSuccess[1] = userDao.updateOrdinary(ordinaryUserModify);
+                                    }
+                                });
+                                threadInsert.start();
+                                try {
+                                    threadInsert.join();
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                                if (isSuccess[0]) {
+                                    globalInfo.setUserName(userName);
+                                    Toast.makeText(ModifyInformationActivity.this, "提交成功", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(ModifyInformationActivity.this, "提交失败", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        }
+                        //showConfirmDialog();
                     }
                 } else {
                     Toast.makeText(ModifyInformationActivity.this, "请将表单填写完整",Toast.LENGTH_SHORT).show();
@@ -169,7 +311,6 @@ public class ModifyInformationActivity extends AppCompatActivity {
         builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                //todo 数据库提交数据, 提交成功弹出提示 写前面不知道会不会卡顿
                 dialogInterface.cancel();
             }
         });

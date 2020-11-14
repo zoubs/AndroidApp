@@ -45,6 +45,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
+                android:hint=" 例如 xxx@qq.com"
                 android:textSize="20sp"
                 android:inputType="textEmailAddress" />
         </LinearLayout>
@@ -68,6 +69,7 @@
                 android:id="@+id/user_sign_up_user_name_add"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:hint="不超过6个字符"
                 android:singleLine="true"
                 android:layout_weight="1"
                 android:textSize="20sp"
@@ -94,6 +96,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:hint="6-16位字母或数字的组合"
                 android:ems="10"
                 android:textSize="20sp"
                 android:inputType="textPassword" />
@@ -120,6 +123,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
+                android:hint="6-16位字母或数字的组合"
                 android:textSize="20sp"
                 android:inputType="textPassword" />
         </LinearLayout>
@@ -135,6 +139,7 @@
                 android:id="@+id/btn_user_sign_up_commit_add"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="120dp"
                 android:textColor="#FFFFFF"
                 android:text="确定"
                 android:background="@drawable/log_up_button"
@@ -144,16 +149,16 @@
             <Space
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.5" />
+                android:layout_weight="3.5" />
 
-            <Button
+            <!--<Button
                 android:id="@+id/btn_user_sign_up_cancel_add"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#FFFFFF"
                 android:background="@drawable/log_up_button"
                 android:layout_weight="1"
-                android:text="取消" />
+                android:text="取消" />-->
         </LinearLayout>
 
     </LinearLayout>
