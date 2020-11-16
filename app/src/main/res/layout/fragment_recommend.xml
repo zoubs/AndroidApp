@@ -23,10 +23,10 @@
 
     <ImageView
         android:id="@+id/recommend_image1"
-        android:layout_width="350dp"
-        android:layout_height="480dp"
+        android:layout_width="330dp"
+        android:layout_height="460dp"
         android:layout_below="@id/text_recommend"
-        android:layout_marginTop="40sp"
+        android:layout_marginTop="20sp"
         android:layout_centerHorizontal="true"
         android:scaleType="fitXY" />
 

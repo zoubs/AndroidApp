@@ -51,7 +51,7 @@ public class RecommendFragment extends Fragment {
         mBtnNextGroup.setVisibility(View.INVISIBLE);
         globalInfo = (GlobalInfo) getActivity().getApplication();
 
-        imageViewRecommend.setImageResource(R.drawable.pengyuyan);
+        imageViewRecommend.setImageResource(R.drawable.recommend_nor3);
         Thread thread;
         final boolean[] isExist = new boolean[1];
         thread = new Thread(new Runnable() {

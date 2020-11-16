@@ -22,7 +22,6 @@ public class InfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info);
         OrdinaryUserData userData = new OrdinaryUserData();
-        //fixme 设了个默认值，以后删除
         globalInfo = (GlobalInfo)getApplication();
 
         editTextAge = findViewById(R.id.et_user_age);

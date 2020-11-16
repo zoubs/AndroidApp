@@ -10,12 +10,14 @@
         android:id="@+id/text_send"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="用户反馈"
+        android:gravity="center"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:background="#339966"
         android:textColor="#FFFFFF"
-        android:textSize="30sp"
+        android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -44,7 +46,7 @@
         android:id="@+id/et_feedback_describe"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:layout_marginTop="350dp"
+        android:layout_marginTop="320dp"
         android:hint="反馈内容"
         android:background="@drawable/bg_padding"
         android:textColor="#000000"
@@ -67,8 +69,8 @@
         android:textSize="20sp"
         android:background="#FAFAD2"
         android:layout_below="@id/et_feedback_describe"
-        android:layout_marginTop="50dp"
-        android:layout_marginLeft="70dp"/>
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="60dp"/>
     <Button
         android:id="@+id/btn_feedback_submit"
         android:layout_width="wrap_content"
@@ -78,7 +80,7 @@
         android:textSize="20sp"
         android:layout_below="@id/et_feedback_describe"
         android:layout_toRightOf="@id/btn_feedback_record"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="40dp"
         android:layout_marginLeft="50dp"/>
 
 </RelativeLayout>

@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.info.LogOutActivity"
+    android:padding="10dp"
     android:orientation="vertical"
     android:background="#F8F8FF">
 

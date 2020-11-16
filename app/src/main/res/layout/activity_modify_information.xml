@@ -4,84 +4,98 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F8F8FF">
-
+    <TextView
+        android:id="@+id/text_lll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="8dp"
+        android:text="修改用户信息"
+        android:textAlignment="center"
+        android:textSize="40sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
     <TextView
         android:id="@+id/text_nickname_modify"
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
+        android:layout_below="@id/text_lll"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="40dp"
         android:text="用户名:"
-        android:textSize="25sp" />
+        android:textSize="20sp" />
 
     <EditText
         android:id="@+id/et_user_nickname_modify"
-        android:layout_width="230dp"
+        android:layout_width="200dp"
         android:imeOptions="actionNone"
         android:inputType="text"
         android:lines="1"
-        android:layout_height="50dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="50dp"
+        android:layout_below="@id/text_lll"
+        android:layout_height="40dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="40dp"
         android:layout_toRightOf="@id/text_nickname_modify"
         android:background="@drawable/bg_input"
         android:hint="不超过6个字符"
         android:maxLines="1"
-        android:textSize="25sp" />
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/text_user_age_modify"
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:layout_below="@id/text_nickname_modify"
         android:layout_marginStart="10dp"
         android:layout_marginTop="30dp"
         android:text="年    龄:"
-        android:textSize="25sp" />
+        android:textSize="20sp" />
 
     <EditText
         android:id="@+id/et_user_age_modify"
-        android:layout_width="230dp"
-        android:layout_height="50dp"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
         android:layout_below="@id/et_user_nickname_modify"
-        android:layout_marginLeft="40dp"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="30dp"
         android:layout_toEndOf="@id/text_user_age_modify"
         android:background="@drawable/bg_input"
         android:maxLines="1"
-        android:textSize="25sp" />
+        android:textSize="20sp" />
 
 
     <TextView
         android:id="@+id/text_user_height_modify"
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:layout_below="@id/text_user_age_modify"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="30dp"
         android:text="身    高:"
-        android:textSize="25sp" />
+        android:textSize="20sp" />
 
     <EditText
         android:id="@+id/et_user_height_modify"
         android:inputType="numberDecimal|number"
         android:imeOptions="actionNext"
         android:layout_width="130dp"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:layout_below="@id/text_user_age_modify"
-        android:layout_marginLeft="40dp"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="30dp"
         android:layout_toEndOf="@id/text_user_height_modify"
         android:background="@drawable/bg_input"
         android:maxLines="1"
-        android:textSize="25sp" />
+        android:textSize="20sp" />
 
     <TextView
-        android:layout_width="100dp"
-        android:layout_height="50dp"
+        android:layout_width="70dp"
+        android:layout_height="40dp"
         android:layout_below="@id/text_user_age_modify"
         android:text="厘米"
-        android:textSize="25sp"
+        android:textSize="20sp"
         android:gravity="center"
         android:layout_marginTop="30dp"
         android:layout_toRightOf="@id/et_user_height_modify" />
@@ -89,72 +103,72 @@
     <TextView
         android:id="@+id/text_user_weight_modify"
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:layout_below="@id/text_user_height_modify"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="30dp"
         android:text="体    重:"
-        android:textSize="25sp" />
+        android:textSize="20sp" />
 
     <EditText
         android:id="@+id/et_user_weight_modify"
         android:inputType="numberDecimal|number"
         android:imeOptions="actionNext"
         android:layout_width="130dp"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:layout_below="@id/et_user_height_modify"
-        android:layout_marginLeft="40dp"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="30dp"
         android:layout_toEndOf="@id/text_user_weight_modify"
         android:background="@drawable/bg_input"
         android:maxLines="1"
-        android:textSize="25sp" />
+        android:textSize="20sp" />
     <TextView
-        android:layout_width="100dp"
-        android:layout_height="50dp"
+        android:layout_width="70dp"
+        android:layout_height="40dp"
         android:layout_below="@id/et_user_height_modify"
         android:text="千克"
-        android:textSize="25sp"
+        android:textSize="20sp"
         android:gravity="center"
         android:layout_marginTop="30dp"
         android:layout_toRightOf="@id/et_user_height_modify" />
     <TextView
         android:id="@+id/text_user_blood_pressure_modify"
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:layout_below="@id/text_user_weight_modify"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="30dp"
         android:text="血    压:"
-        android:textSize="25sp" />
+        android:textSize="20sp" />
 
     <EditText
         android:id="@+id/et_user_blood_pressure_modify"
         android:inputType="numberDecimal|number"
         android:imeOptions="actionNext"
         android:layout_width="125dp"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:layout_below="@id/et_user_weight_modify"
-        android:layout_marginStart="40dp"
-        android:layout_marginLeft="40dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="30dp"
         android:layout_toEndOf="@id/text_user_blood_pressure_modify"
         android:background="@drawable/bg_input"
         android:hint="血压"
         android:gravity="center"
         android:maxLines="1"
-        android:textSize="25sp" />
+        android:textSize="20sp" />
 
     <Button
         android:id="@+id/user_info_submit_modify"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/et_user_blood_pressure_modify"
-        android:layout_marginLeft="150dp"
+        android:layout_marginLeft="140dp"
         android:layout_marginTop="45dp"
         android:background="#FAFAD2"
         android:text="保存"
-        android:textSize="25sp" />
+        android:textSize="20sp" />
     <!--
     <WebView
         android:id="@+id/wv"

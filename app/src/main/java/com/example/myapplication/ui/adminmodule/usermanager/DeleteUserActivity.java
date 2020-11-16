@@ -30,6 +30,7 @@ public class DeleteUserActivity extends AppCompatActivity {
         mBtnCancel = findViewById(R.id.btn_admin_find_user);
         mBtnSubmit = findViewById(R.id.btn_admin_del_user);
 
+        mBtnCancel.setVisibility(View.INVISIBLE);
         mBtnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

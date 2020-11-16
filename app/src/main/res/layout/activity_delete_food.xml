@@ -38,7 +38,7 @@
             android:layout_marginLeft="6dp"
             android:layout_marginRight="10dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="0.8"
             android:singleLine="true"
             android:ems="10"
             android:textSize="20sp" />
@@ -68,10 +68,10 @@
         <TextView
             android:id="@+id/text_fm_del_2"
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
+            android:layout_height="40dp"
             android:layout_marginTop="40dp"
-            android:text="食物名称："
-            android:textSize="25sp"
+            android:text="食物名："
+            android:textSize="20sp"
             android:gravity="center"
             />
         <EditText
@@ -79,7 +79,7 @@
             android:imeOptions="actionNext"
             android:singleLine="true"
             android:layout_width="140dp"
-            android:layout_height="50dp"
+            android:layout_height="40dp"
             android:layout_marginTop="40dp"
             android:layout_toRightOf="@id/text_fm_del_2"
             android:background="@drawable/bg_input"
@@ -87,27 +87,27 @@
         <Button
             android:id="@+id/btn_del_food_submit"
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
+            android:layout_height="40dp"
             android:layout_marginTop="40dp"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="8dp"
             android:layout_toRightOf="@id/et_del_food_name"
             android:text="删除"
-            android:textSize="25sp"/>
+            android:textSize="20sp"/>
         <Button
             android:id="@+id/btn_del_food_modify"
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
+            android:layout_height="40dp"
             android:layout_marginTop="40dp"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="8dp"
             android:layout_toRightOf="@id/et_del_food_name"
             android:layout_below="@id/btn_del_food_submit"
             android:text="修改"
-            android:textSize="25sp"/>
+            android:textSize="20sp"/>
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:text="食物种类："
-            android:textSize="25sp"
+            android:layout_height="40dp"
+            android:text="种  类："
+            android:textSize="20sp"
             android:gravity="center"
             android:layout_below="@id/text_fm_del_2"
             android:layout_marginTop="40dp"
@@ -116,27 +116,27 @@
             android:id="@+id/et_del_food_type"
             android:singleLine="true"
             android:layout_width="140dp"
-            android:layout_height="50dp"
+            android:layout_height="40dp"
             android:layout_marginTop="40dp"
             android:layout_below="@id/et_del_food_name"
             android:layout_toRightOf="@id/text_fm_del_2"
             android:background="@drawable/bg_input"
             />
+
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:text="卡路里： "
-            android:textSize="25sp"
-            android:gravity="center"
+            android:layout_height="40dp"
             android:layout_below="@id/et_del_food_type"
             android:layout_marginTop="40dp"
-            />
+            android:gravity="center"
+            android:text="卡路里： "
+            android:textSize="20sp" />
         <EditText
             android:id="@+id/et_del_food_calorie"
             android:singleLine="true"
             android:inputType="numberDecimal"
             android:layout_width="140dp"
-            android:layout_height="50dp"
+            android:layout_height="40dp"
             android:layout_marginTop="40dp"
             android:layout_below="@id/et_del_food_type"
             android:layout_toRightOf="@id/text_fm_del_2"

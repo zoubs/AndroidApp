@@ -6,21 +6,37 @@
     android:layout_height="match_parent"
     android:padding="10dp"
     tools:context=".ui.adminmodule.foodmanager.AddFoodActivity">
+
+    <TextView
+        android:id="@+id/text_aaa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="8dp"
+        android:text="添加食物"
+        android:textAlignment="center"
+        android:textSize="40sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
     <TextView
         android:id="@+id/text_fm_add_2"
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:layout_marginTop="40dp"
         android:text="食物名称："
-        android:textSize="25sp"
+        android:layout_below="@id/text_aaa"
+        android:textSize="20sp"
         android:gravity="center"
         />
     <EditText
         android:id="@+id/et_add_food_name"
         android:imeOptions="actionNext"
         android:singleLine="true"
-        android:layout_width="140dp"
-        android:layout_height="50dp"
+        android:layout_below="@id/text_aaa"
+        android:layout_width="130dp"
+        android:layout_height="40dp"
         android:layout_marginTop="40dp"
         android:layout_toRightOf="@id/text_fm_add_2"
         android:background="@drawable/bg_input"
@@ -28,24 +44,25 @@
     <Button
         android:id="@+id/btn_add_food_submit"
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
+        android:layout_below="@id/text_aaa"
+        android:layout_height="40dp"
         android:layout_marginTop="40dp"
         android:layout_marginLeft="5dp"
         android:layout_toRightOf="@id/et_add_food_name"
         android:text="添加"
-        android:textSize="25sp"/>
+        android:textSize="20sp"/>
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:text="食物种类："
-        android:textSize="25sp"
+        android:textSize="20sp"
         android:gravity="center"
         android:layout_below="@id/text_fm_add_2"
         android:layout_marginTop="40dp"
         />
     <EditText
         android:id="@+id/et_add_food_type"
-        android:layout_width="140dp"
+        android:layout_width="130dp"
         android:layout_height="50dp"
         android:layout_marginTop="40dp"
         android:singleLine="true"
@@ -55,17 +72,28 @@
         />
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:text="卡路里： "
-        android:textSize="25sp"
+        android:layout_height="40dp"
+        android:text="卡路里："
+        android:textSize="20sp"
         android:gravity="center"
         android:layout_below="@id/et_add_food_type"
         android:layout_marginTop="40dp"
         />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:text="cal"
+        android:textSize="23sp"
+        android:gravity="center"
+        android:layout_marginLeft="5dp"
+        android:layout_below="@id/et_add_food_type"
+        android:layout_toRightOf="@id/et_add_food_calorie"
+        android:layout_marginTop="40dp"
+        />
     <EditText
         android:id="@+id/et_add_food_calorie"
-        android:layout_width="140dp"
-        android:layout_height="50dp"
+        android:layout_width="130dp"
+        android:layout_height="40dp"
         android:layout_marginTop="40dp"
         android:singleLine="true"
         android:inputType="numberDecimal"

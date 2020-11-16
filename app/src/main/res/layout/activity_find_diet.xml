@@ -8,27 +8,39 @@
     android:padding="8dp"
     tools:context=".ui.recorddiet.FindDietActivity">
 
-    <LinearLayout
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="8dp"
+        android:text="饮食记录"
+        android:textAlignment="center"
+        android:textSize="40sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:orientation="horizontal"
+        android:gravity="center">
 
         <TextView
             android:id="@+id/text_diet_date"
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
+            android:layout_height="40dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="40dp"
             android:gravity="center"
             android:text="日期"
-            android:textSize="25sp" />
+            android:textSize="20sp" />
 
         <EditText
             android:id="@+id/et_record_diet_date"
-            android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="40dp"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="15dp"
             android:layout_toRightOf="@id/text_diet_date"
             android:background="@drawable/bg_input" />
 
@@ -36,11 +48,10 @@
             android:id="@+id/btn_record_diet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginLeft="15dp"
             android:layout_toRightOf="@id/et_record_diet_date"
             android:text="点击查询"
-            android:textSize="25sp" />
+            android:textSize="20sp" />
     </LinearLayout>
 
     <LinearLayout
